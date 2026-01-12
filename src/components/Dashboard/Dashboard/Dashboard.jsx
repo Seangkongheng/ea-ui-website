@@ -134,34 +134,35 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Tabs (NO SCROLLBAR) */}
-      <div className="relative mb-6 border-b border-neutral-800">
-        <div className="flex space-x-2">
-          {tabs.map((tab) => {
-            const isActive = activeTab === tab.id;
+    {/* Tabs */}
+<div className="relative mb-6 border-b border-neutral-800">
+  <div className="flex space-x-2 overflow-x-auto scrollbar-hide">
+    {tabs.map((tab) => {
+      const isActive = activeTab === tab.id;
 
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`relative flex items-center gap-2 px-5 py-3 font-medium transition-all whitespace-nowrap
-                  ${
-                    isActive
-                      ? "text-white"
-                      : "text-gray-400 hover:text-white"
-                  }`}
-              >
-                {tab.icon}
-                {tab.label}
+      return (
+        <button
+          key={tab.id}
+          onClick={() => setActiveTab(tab.id)}
+          className={`relative flex items-center gap-2 px-5 py-3 font-medium transition-all whitespace-nowrap
+            ${
+              isActive
+                ? "text-white"
+                : "text-gray-400 hover:text-white"
+            }`}
+        >
+          {tab.icon}
+          {tab.label}
 
-                {isActive && (
-                  <span className="absolute left-0 right-0 -bottom-[1px] h-[2px] bg-[#BAFD00] rounded-full" />
-                )}
-              </button>
-            );
-          })}
-        </div>
-      </div>
+          {isActive && (
+            <span className="absolute left-0 right-0 -bottom-[1px] h-[2px] bg-[#BAFD00] rounded-full" />
+          )}
+        </button>
+      );
+    })}
+  </div>
+</div>
+
 
       {/* Tab Content */}
       <div>
