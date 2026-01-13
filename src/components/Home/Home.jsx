@@ -64,7 +64,7 @@ const Home = () => {
         >
           <a
             href="#"
-            className="group flex justify-center items-center w-full sm:w-auto px-6 py-2 bg-[hsl(59,100%,50%)] text-black rounded-md transition hover:brightness-110 hover:shadow-[0_0_35px_rgba(168,233,0,0.85)]"
+            className="group flex justify-center items-center w-full sm:w-auto px-6 py-2 bg-[hsl(59,100%,50%)] text-black rounded-md transition hover:brightness-110 "
           >
             BUY NOW
             <svg

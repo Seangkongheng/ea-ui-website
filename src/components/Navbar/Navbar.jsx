@@ -36,7 +36,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 right-0 z-50 border-b border-[#BAFD00] transition-all duration-300
+        className={`fixed top-0 left-0 right-0 z-50 border-b border-[hsl(59,100%,50%)] transition-all duration-300
         ${isScrolled ? "backdrop-blur-lg bg-gradient-to-br from-[#070C0F] via-[#0A1219] to-[#070C0F]" : "bg-gradient-to-br from-[#070C0F] via-[#0A1219] to-[#070C0F]"}`}
       >
         <div className="mx-auto max-w-[1512px] px-4">
@@ -56,7 +56,7 @@ const Navbar = () => {
               </h1>
             </div>
 
-            {/* ===== DESKTOP MENU ===== */}
+            {/* DESKTOP MENU  */}
             <ul className="hidden md:flex items-center gap-8">
               {[
                 { name: "Home", path: "/" },
@@ -73,7 +73,7 @@ const Navbar = () => {
                 >
                   <Link
                     to={item.path}
-                    className="text-green-500 uppercase hover:text-[#BAFD00]"
+                    className="text-white uppercase hover:text-[hsl(59,100%,50%)]"
                   >
                     {item.name}
                   </Link>
@@ -91,8 +91,10 @@ const Navbar = () => {
             <div className="hidden md:flex items-center gap-4">
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="px-5 py-2 bg-[hsl(59,100%,50%)] text-black rounded-md shadow-[0_0_20px_rgba(168,233,0,0.45)]
-                hover:shadow-[0_0_35px_rgba(168,233,0,0.85)] transition text-sm"
+                className="px-5 py-2 border border-[hsl(59,100%,50%)] text-white  rounded-lg  text-sm transform transition 
+      duration-300
+      hover:scale-105 hover:brightness-110
+      active:scale-95"
               >
                 Sign in
               </button>
