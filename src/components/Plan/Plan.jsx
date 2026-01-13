@@ -274,14 +274,12 @@ const Plan = () => {
           }`}
         >
           {/* Recommended Badge */}
-  {activeTab === "yearly" && (
-    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-lime-400 text-black  px-3 py-1 rounded-full text-sm shadow-lg">
-    
-      ⭐ Recommended
-    </div>
-  )}
-        
-          
+          {activeTab === "yearly" && (
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-lime-400 text-black  px-3 py-1 rounded-full text-sm shadow-lg">
+              ⭐ Recommended
+            </div>
+          )}
+
           <div className="flex items-center justify-between gap-6 mb-4">
             <div className="description">
               <h2 className="text-2xl font-bold mb-2  text-white">

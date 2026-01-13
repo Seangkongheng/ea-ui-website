@@ -37,11 +37,14 @@ const Navbar = () => {
     <>
       <div
         className={`fixed top-0 left-0 right-0 z-50 border-b border-[hsl(59,100%,50%)] transition-all duration-300
-        ${isScrolled ? "backdrop-blur-lg bg-gradient-to-br from-[#070C0F] via-[#0A1219] to-[#070C0F]" : "bg-gradient-to-br from-[#070C0F] via-[#0A1219] to-[#070C0F]"}`}
+        ${
+          isScrolled
+            ? "backdrop-blur-lg bg-gradient-to-br from-[#070C0F] via-[#0A1219] to-[#070C0F]"
+            : "bg-gradient-to-br from-[#070C0F] via-[#0A1219] to-[#070C0F]"
+        }`}
       >
         <div className="mx-auto max-w-[1512px] px-4">
           <div className="flex h-16 items-center justify-between text-white">
-
             {/* Logo */}
             <div className="flex items-center gap-2">
               <motion.img
@@ -49,7 +52,11 @@ const Navbar = () => {
                 alt="Logo"
                 className="w-10"
                 animate={{ rotate: [-10, 10, -10] }}
-                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 2,
+                  ease: "easeInOut",
+                }}
               />
               <h1 className="text-white text-2xl font-bold">
                 <Link to="/">SmartTradingEA 🤖</Link>
@@ -127,7 +134,7 @@ const Navbar = () => {
                   key={i}
                   to={item.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block uppercase rounded-lg px-4 py-3 text-gray-300
+                  className="block uppercase rounded-lg px-4 py-3 text-white
                   hover:text-[#BAFD00] hover:bg-white/5 transition"
                 >
                   {item.name}
@@ -150,7 +157,7 @@ const Navbar = () => {
         </div>
       </div>
 
-           <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div className="modal-content w-full">
           {isSignUp ? (
             // ---------------- SIGN UP ----------------
