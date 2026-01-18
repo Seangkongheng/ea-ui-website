@@ -10,7 +10,6 @@ import Feature from "./components/Feature/Feature";
 import Plan from "./components/Plan/Plan";
 import Dashboard from "./components/Dashboard/Dashboard/Dashboard";
 import OrderDetail from "./components/Dashboard/Marketplace/OrderDetail";
-import Contact from "./components/Contact/Contact";
 import About from "./components/About/About";
 import Downlaod from "./components/download/Downlaod";
 import Product from "./components/Product/Product";
@@ -20,7 +19,7 @@ import VerifyLogin from "./components/VerifyLogin/VerifyLogin";
 function App() {
   return (
     <Router>
-      <div className="App min-h-screen bg-gradient-to-br from-[#070C0F] via-[#0A1219] to-[#070C0F] overflow-hidden relative">
+      <div className="App  min-h-screen  bg-gradient-to-br from-[#070C0F] via-[#0A1219] to-[#070C0F] overflow-hidden relative">
         
         {/* Navbar always visible */}
         <Navbar />
@@ -41,7 +40,6 @@ function App() {
 
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/order" element={<OrderDetail />} />
-            <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/download" element={<Downlaod />} />
             <Route path="/product" element={<Product />} />

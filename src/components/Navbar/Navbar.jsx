@@ -158,13 +158,12 @@ const Navbar = () => {
             </div>
 
             {/* DESKTOP MENU  */}
-            <ul className="hidden md:flex items-center gap-8">
+            <ul className="hidden font-Kantumruy md:flex items-center gap-8">
               {[
                 { name: "Home", path: "/" },
                 { name: "Features", path: "/feature" },
                 { name: "Products", path: "/product" },
                 { name: "Download", path: "/download" },
-                { name: "Contact", path: "/contact" },
               ].map((item, i) => (
                 <motion.li
                   key={i}
@@ -219,7 +218,6 @@ const Navbar = () => {
                 { name: "Features", path: "/feature" },
                 { name: "Products", path: "/product" },
                 { name: "Download", path: "/download" },
-                { name: "Contact", path: "/contact" },
               ].map((item, i) => (
                 <Link
                   key={i}
@@ -248,6 +246,7 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Modal show Login and Sign Up */}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div className="modal-content w-full">
           {isSignUp ? (
