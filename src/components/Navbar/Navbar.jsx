@@ -160,7 +160,7 @@ const Navbar = () => {
             {/* DESKTOP MENU  */}
             <ul className="hidden md:flex items-center gap-8">
               {[
-                { name: "Home Testing", path: "/" },
+                { name: "Home 1", path: "/" },
                 { name: "Features", path: "/feature" },
                 { name: "Products", path: "/product" },
                 { name: "Download", path: "/download" },
