@@ -274,7 +274,6 @@ const AnimatedBackground = () => {
 
       // Gentle auto drift
       candlesGroup.rotation.y += 0.00025;
-
       renderer.render(scene, camera);
     };
 

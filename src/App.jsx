@@ -15,6 +15,7 @@ import About from "./components/About/About";
 import Downlaod from "./components/download/Downlaod";
 import Product from "./components/Product/Product";
 import FeaturePage from "./components/Feature/FeaturePage";
+import VerifyLogin from "./components/VerifyLogin/VerifyLogin";
 
 function App() {
   return (
@@ -45,6 +46,8 @@ function App() {
             <Route path="/download" element={<Downlaod />} />
             <Route path="/product" element={<Product />} />
             <Route path="/feature" element={<FeaturePage />} />
+            <Route path="/verify-login" element={<VerifyLogin />} />
+
           </Routes>
         </main>
 
