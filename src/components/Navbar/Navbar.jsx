@@ -362,13 +362,13 @@ const Navbar = () => {
               </div>
 
               {/* Notd : Captcha Token */}
-              {/* <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center">
                 <Turnstile
                   siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
                   onSuccess={(token) => setCaptchaToken(token)}
                   onExpire={() => setCaptchaToken("")}
                 />
-              </div> */}
+              </div>
 
               {/* Submit Button */}
               <button
