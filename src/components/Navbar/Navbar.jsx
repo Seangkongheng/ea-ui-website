@@ -42,50 +42,55 @@ const Navbar = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // if (!captchaToken) {
-    //   alert("Please verify captcha first!");
-    //   return;
-    // }
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    setError([]);
-    setSuccess("");
-    setLoading(true);
+  setError({});
+  setSuccess("");
+  setLoading(true);
 
-    try {
-      // const res = await axios.post(`${import.meta.env.VITE_API_URL}register`, {
-      //   ...form,
-      //   captcha: captchaToken, // include Turnstile token
-      // });
-
-       const res = await axios.post(`${import.meta.env.VITE_API_URL}register`, {
-        ...form, // include Turnstile token
-      });
-
-
-      setSuccess(res.data.message);
-
-      // Reset form
-      setForm({
-        first_name: "",
-        last_name: "",
-        email: "",
-        password: "",
-        password_confirmation: "",
-      });
-
-      setIsSignUp(false);
-    } catch (err) {
-      if (err.response?.status === 422) {
-        setError(err.response.data.errors); // validation errors
-      } else {
-        console.error(err); // other errors
+  try {
+    const res = await axios.post(
+      `${import.meta.env.VITE_API_URL}register`,
+      {
+        first_name: form.first_name,
+        last_name: form.last_name,
+        email: form.email,
+        password: form.password,
+        password_confirmation: form.password_confirmation,
+      },
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
       }
-    } finally {
-      setLoading(false);
+    );
+
+    setSuccess(res.data.message);
+
+    setForm({
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
+      password_confirmation: "",
+    });
+
+    setIsSignUp(false);
+  } catch (err) {
+    console.error("REGISTER ERROR:", err.response || err);
+
+    if (err.response?.status === 422) {
+      setError(err.response.data.errors);
+    } else if (err.response?.status === 500) {
+      alert("Server error. Please try again later.");
     }
-  };
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   // Noted : Start Login
   const handleLogin = async (e) => {
