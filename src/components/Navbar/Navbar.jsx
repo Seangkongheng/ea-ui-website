@@ -54,14 +54,14 @@ const Navbar = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}register`, {
-        ...form,
-        captcha: captchaToken, // include Turnstile token
-      });
-
-      //  const res = await axios.post(`${import.meta.env.VITE_API_URL}register`, {
-      //   ...form, // include Turnstile token
+      // const res = await axios.post(`${import.meta.env.VITE_API_URL}register`, {
+      //   ...form,
+      //   captcha: captchaToken, // include Turnstile token
       // });
+
+       const res = await axios.post(`${import.meta.env.VITE_API_URL}register`, {
+        ...form, // include Turnstile token
+      });
 
 
       setSuccess(res.data.message);
