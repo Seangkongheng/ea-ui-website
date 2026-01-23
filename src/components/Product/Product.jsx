@@ -28,6 +28,7 @@ const Product = () => {
   };
   return (
     <motion.div
+      className="py-10"
       variants={container}
       initial="hidden"
       whileInView="show"
@@ -35,12 +36,15 @@ const Product = () => {
     >
       <div className=" mt-16 text-white max-w-6xl mx-auto px-5">
         {/* Noted : Title */}
+
         <motion.h1
           variants={item}
-          className="text-center py-5 text-[#A8E900] text-3xl font-bold md:text-5xl"
+          className="mb-6  bg-gradient-to-r from-[#FFD700] via-[#BAFD00] to-[#9EFF00]
+                   bg-clip-text text-transparent text-2xl sm:text-6xl font-bold text-center"
         >
           Our Products
         </motion.h1>
+
         <motion.p
           variants={item}
           className="text-center text-gray-500 mb-10 mt-5"
@@ -49,9 +53,13 @@ const Product = () => {
         </motion.p>
       </div>
 
-      <div className="marketplace-content grid grid-cols-1 md:grid-cols-3 gap-4 ">
+      <div className="max-w-6xl mx-auto px-5 grid grid-cols-1 md:grid-cols-3 gap-6 ">
         {/* Noted : Card 1 */}
-        <div className="content-card flex flex-col  border border-neutral-700 hover:border-[#BAFD00] cursor-pointer p-6 bg-[#111] rounded-lg">
+        <div
+          className="content-card flex flex-col  cursor-pointer p-6  group relative overflow-hidden border border-white/10
+        hover:border-lime-400 transition-all
+        bg-gradient-to-b from-white/5 to-transparent rounded-3xl"
+        >
           <div className="card-title">
             <h3 className="text-lg font-bold mb-2 text-white">Trading Robot</h3>
           </div>
@@ -166,16 +174,19 @@ const Product = () => {
 
               <button
                 onClick={() => navigate("/order")}
-                class="mt-4 w-full  rounded-md  px-4 py-2 text-sm bg-[#A8E900]  text-black/70 font-bold text-primary-foreground  focus:outline-none focus:ring-2  text-black  transition shadow-[0_0_20px_rgba(168,233,0,0.45)] hover:brightness-110 hover:shadow-[0_0_35px_rgba(168,233,0,0.85)] focus:ring-primary focus:ring-offset-2"
+                class="mt-4 w-full  rounded-md  px-4 py-2 text-sm bg-[#A8E900]  text-black/70 font-bold text-primary-foreground  focus:outline-none focus:ring-2  text-black  transition  hover:brightness-110  focus:ring-primary focus:ring-offset-2"
               >
                 View Details & Order
               </button>
             </div>
           </div>
         </div>
-
-        {/* Noted : Card 1 */}
-        <div className="content-card flex flex-col  border border-neutral-700 hover:border-[#BAFD00] cursor-pointer p-6 bg-[#111] rounded-lg">
+         {/* Noted : Card 1 */}
+        <div
+          className="content-card flex flex-col  cursor-pointer p-6  group relative overflow-hidden border border-white/10
+        hover:border-lime-400 transition-all
+        bg-gradient-to-b from-white/5 to-transparent rounded-3xl"
+        >
           <div className="card-title">
             <h3 className="text-lg font-bold mb-2 text-white">Trading Robot</h3>
           </div>
@@ -290,16 +301,19 @@ const Product = () => {
 
               <button
                 onClick={() => navigate("/order")}
-                class="mt-4 w-full  rounded-md  px-4 py-2 text-sm bg-[#A8E900]  text-black/70 font-bold text-primary-foreground  focus:outline-none focus:ring-2  text-black  transition shadow-[0_0_20px_rgba(168,233,0,0.45)] hover:brightness-110 hover:shadow-[0_0_35px_rgba(168,233,0,0.85)] focus:ring-primary focus:ring-offset-2"
+                class="mt-4 w-full  rounded-md  px-4 py-2 text-sm bg-[#A8E900]  text-black/70 font-bold text-primary-foreground  focus:outline-none focus:ring-2  text-black  transition  hover:brightness-110  focus:ring-primary focus:ring-offset-2"
               >
                 View Details & Order
               </button>
             </div>
           </div>
         </div>
-
-        {/* Noted : Card 1 */}
-        <div className="content-card flex flex-col  border border-neutral-700 hover:border-[#BAFD00] cursor-pointer p-6 bg-[#111] rounded-lg">
+         {/* Noted : Card 1 */}
+        <div
+          className="content-card flex flex-col  cursor-pointer p-6  group relative overflow-hidden border border-white/10
+        hover:border-lime-400 transition-all
+        bg-gradient-to-b from-white/5 to-transparent rounded-3xl"
+        >
           <div className="card-title">
             <h3 className="text-lg font-bold mb-2 text-white">Trading Robot</h3>
           </div>
@@ -414,13 +428,15 @@ const Product = () => {
 
               <button
                 onClick={() => navigate("/order")}
-                class="mt-4 w-full  rounded-md  px-4 py-2 text-sm bg-[#A8E900]  text-black/70 font-bold text-primary-foreground  focus:outline-none focus:ring-2  text-black  transition shadow-[0_0_20px_rgba(168,233,0,0.45)] hover:brightness-110 hover:shadow-[0_0_35px_rgba(168,233,0,0.85)] focus:ring-primary focus:ring-offset-2"
+                class="mt-4 w-full  rounded-md  px-4 py-2 text-sm bg-[#A8E900]  text-black/70 font-bold text-primary-foreground  focus:outline-none focus:ring-2  text-black  transition  hover:brightness-110  focus:ring-primary focus:ring-offset-2"
               >
                 View Details & Order
               </button>
             </div>
           </div>
         </div>
+
+
       </div>
     </motion.div>
   );

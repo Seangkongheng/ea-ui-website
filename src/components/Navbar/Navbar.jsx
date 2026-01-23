@@ -160,7 +160,10 @@ const Navbar = () => {
                   ease: "easeInOut",
                 }}
               />
-              <h1 className="text-white text-2xl font-semibold">
+              <h1
+                className="text-white font-semibold
+               text-[clamp(1rem,2.5vw,1.5rem)]"
+              >
                 <Link to="/">SmartTradingEA 🤖</Link>
               </h1>
             </div>

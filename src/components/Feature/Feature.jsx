@@ -1,625 +1,674 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import FeatureModal from "../modal/FeatureModal";
+import { title } from "framer-motion/client";
+
+const container = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.15 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 70, damping: 18 },
+  },
+};
+
+const Card = ({ children, big }) => (
+  <motion.div
+    variants={item}
+    className={`
+      group relative overflow-hidden rounded-3xl border border-white/10
+      hover:border-lime-400 transition-all
+      ${big ? "p-10" : "p-6"}
+      bg-gradient-to-b from-white/5 to-transparent
+    `}
+  >
+    {children}
+  </motion.div>
+);
 
 const Feature = () => {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
-      },
-    },
-  };
+  // Risk icon
+  const RiskIcon = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="140"
+      height="140"
+      viewBox="0 0 140 140"
+    >
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#BAFD00"></stop>
+          <stop offset="1" stop-color="#A8E900"></stop>
+        </linearGradient>
+      </defs>
+      <path
+        d="M70 18 L108 34 V70c0 25-18 42-38 52C50 112 32 95 32 70V34Z"
+        fill="none"
+        stroke="url(#g1)"
+        stroke-width="6"
+        stroke-linejoin="round"
+      ></path>
+      <circle
+        cx="70"
+        cy="66"
+        r="18"
+        fill="none"
+        stroke="#A8E900"
+        stroke-width="4"
+        opacity="0.35"
+      >
+        <animate
+          attributeName="r"
+          values="14;22;14"
+          dur="1.6s"
+          repeatCount="indefinite"
+        ></animate>
+        <animate
+          attributeName="opacity"
+          values="0.45;0.1;0.45"
+          dur="1.6s"
+          repeatCount="indefinite"
+        ></animate>
+      </circle>
+      <path
+        d="M58 66 l8 8 18-20"
+        fill="none"
+        stroke="#A8E900"
+        stroke-width="6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <animate
+          attributeName="strokeDasharray"
+          values="0,80;80,0;0,80"
+          dur="1.6s"
+          repeatCount="indefinite"
+        ></animate>
+      </path>
+    </svg>
+  );
 
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 60,
-        damping: 20,
-        mass: 0.8,
-      },
-    },
-  };
+  const RealtimeIcon = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="140"
+      height="140"
+      viewBox="0 0 140 140"
+      class="shrink-0"
+    >
+      <rect
+        x="20"
+        y="28"
+        width="100"
+        height="70"
+        rx="10"
+        fill="none"
+        stroke="#64748b"
+        stroke-width="6"
+      ></rect>
+      <path
+        d="M55 112h30"
+        fill="none"
+        stroke="#64748b"
+        stroke-width="6"
+        stroke-linecap="round"
+      ></path>
+      <path
+        d="M70 98v14"
+        fill="none"
+        stroke="#64748b"
+        stroke-width="6"
+        stroke-linecap="round"
+      ></path>
+      <path
+        d="M28 72 C38 72, 38 52, 48 52 C58 52, 58 84, 68 84 C78 84, 78 60, 88 60 C98 60, 98 78, 108 78 C116 78, 116 72, 124 72"
+        fill="none"
+        stroke="#BAFD00"
+        stroke-width="6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-dasharray="260"
+        stroke-dashoffset="260"
+      >
+        <animate
+          attributeName="strokeDashoffset"
+          values="260;0;0;260"
+          dur="1.4s"
+          repeatCount="indefinite"
+        ></animate>
+      </path>
+      <circle cx="112" cy="40" r="6" fill="#A8E900">
+        <animate
+          attributeName="opacity"
+          values="1;0.15;1"
+          dur="0.8s"
+          repeatCount="indefinite"
+        ></animate>
+      </circle>
+    </svg>
+  );
+
+  const FrequencyIcon = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="140"
+      height="140"
+      viewBox="0 0 140 140"
+    >
+      <circle
+        cx="70"
+        cy="70"
+        r="50"
+        fill="none"
+        stroke="#64748b"
+        stroke-width="4"
+        opacity="0.3"
+      ></circle>
+      <circle
+        cx="70"
+        cy="70"
+        r="35"
+        fill="none"
+        stroke="#64748b"
+        stroke-width="4"
+        opacity="0.5"
+      ></circle>
+      <circle
+        cx="70"
+        cy="70"
+        r="20"
+        fill="none"
+        stroke="#64748b"
+        stroke-width="4"
+        opacity="0.7"
+      ></circle>
+      <g>
+        <path
+          d="M70 20 L70 40"
+          stroke="#BAFD00"
+          stroke-width="6"
+          stroke-linecap="round"
+        >
+          <animate
+            attributeName="opacity"
+            values="0.3;1;0.3"
+            dur="0.4s"
+            repeatCount="indefinite"
+          ></animate>
+        </path>
+        <path
+          d="M70 100 L70 120"
+          stroke="#BAFD00"
+          stroke-width="6"
+          stroke-linecap="round"
+        >
+          <animate
+            attributeName="opacity"
+            values="1;0.3;1"
+            dur="0.4s"
+            repeatCount="indefinite"
+          ></animate>
+        </path>
+        <path
+          d="M20 70 L40 70"
+          stroke="#A8E900"
+          stroke-width="6"
+          stroke-linecap="round"
+        >
+          <animate
+            attributeName="opacity"
+            values="0.5;1;0.5"
+            dur="0.4s"
+            repeatCount="indefinite"
+            begin="0.1s"
+          ></animate>
+        </path>
+        <path
+          d="M100 70 L120 70"
+          stroke="#A8E900"
+          stroke-width="6"
+          stroke-linecap="round"
+        >
+          <animate
+            attributeName="opacity"
+            values="1;0.5;1"
+            dur="0.4s"
+            repeatCount="indefinite"
+            begin="0.1s"
+          ></animate>
+        </path>
+      </g>
+      <circle cx="70" cy="70" r="8" fill="#BAFD00">
+        <animate
+          attributeName="r"
+          values="6;10;6"
+          dur="0.8s"
+          repeatCount="indefinite"
+        ></animate>
+      </circle>
+      <text
+        x="70"
+        y="75"
+        font-family="monospace"
+        font-size="10"
+        fill="#070C0F"
+        text-anchor="middle"
+        font-weight="700"
+      >
+        M1
+      </text>
+    </svg>
+  );
+
+  const HedgedIcon = (
+    <svg
+      width="140"
+      height="140"
+      viewBox="0 0 140 140"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <linearGradient id="hedgeGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#BAFD00" />
+          <stop offset="100%" stopColor="#A8E900" />
+        </linearGradient>
+
+        <style>
+          {`
+            .orbit {
+              stroke-dasharray: 120 80;
+              animation: orbit 2.6s linear infinite;
+            }
+            .orbit.reverse {
+              animation-direction: reverse;
+            }
+            .core {
+              animation: corePulse 1.8s ease-in-out infinite;
+            }
+            @keyframes orbit {
+              to { stroke-dashoffset: -200; }
+            }
+            @keyframes corePulse {
+              0%,100% { r: 7; opacity: .6; }
+              50% { r: 11; opacity: 1; }
+            }
+          `}
+        </style>
+      </defs>
+
+      <circle
+        cx="70"
+        cy="70"
+        r="42"
+        fill="none"
+        stroke="#64748b"
+        strokeWidth="3"
+        opacity="0.25"
+      />
+
+      <path
+        d="M70 28 A42 42 0 0 1 112 70"
+        fill="none"
+        stroke="url(#hedgeGrad)"
+        strokeWidth="6"
+        strokeLinecap="round"
+        className="orbit"
+      />
+
+      <path
+        d="M28 70 A42 42 0 0 1 70 112"
+        fill="none"
+        stroke="#A8E900"
+        strokeWidth="6"
+        strokeLinecap="round"
+        className="orbit reverse"
+        opacity="0.9"
+      />
+
+      <circle cx="70" cy="70" r="9" fill="#BAFD00" className="core" />
+    </svg>
+  );
+
+ 
+  const [modalData, setModalData] = useState(null);
 
   return (
-    <motion.div
+    <motion.section
       variants={container}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true }}
+      className="max-w-7xl mx-auto px-6 md:px-12 py-24"
     >
-      {/* Button */}
-      <motion.div
-        variants={item}
-        className="btn flex justify-center items-center mb-5"
-      >
-        <button className="border-[hsl(72_100%_50%)] border px-4 py-1 text-white rounded-lg text-center">
+      {/* HEADER */}
+      <motion.div variants={item} className="text-center mb-20">
+        <span className="inline-block mb-4 px-4 py-1 text-sm rounded-full border border-lime-300 text-lime-300">
           Feature
-        </button>
+        </span>
+
+        <h1 className="text-[clamp(2rem,5vw,3.5rem)] font-extrabold bg-gradient-to-r from-[#FFD700] via-[#BAFD00] to-[#9EFF00] bg-clip-text text-transparent">
+          Expert Advisor Features
+        </h1>
+
+        <p className="mt-4 text-gray-400 max-w-xl mx-auto">
+          Professional automation engineered specifically for Gold volatility
+        </p>
       </motion.div>
 
-      {/* Title */}
-      <motion.h1
-        variants={item}
-        className="text-center text-3xl font-bold md:text-5xl
-             bg-gradient-to-r from-[#FFD700] via-[#BAFD00] to-[#9EFF00]
-             bg-clip-text text-transparent"
-      >
-        Expert Advisor Features
-      </motion.h1>
-
-      <motion.p
-        variants={item}
-        className="text-center text-gray-500 mb-10 mt-5"
-      >
-        Professional automation engineered for Gold volatility
-      </motion.p>
-
-      {/* Feature content */}
+      {/* ================= PRIMARY FEATURES ================= */}
       <motion.div
-        variants={item}
-        className="feature-content-card px-3 grid gap-6 grid-cols-1 md:grid-cols-2"
+        variants={container}
+        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mb-24"
       >
         {/* Risk Control */}
-        <div className="p-10 rounded-3xl border border-lime-100 hover:border-[hsl(59,100%,50%)]  duration-300 hover:-translate-y-1 flex flex-col h-full text-white">
-          <div className="flex justify-center items-center">
-            <div className="risk p-5">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="140"
-                height="140"
-                viewBox="0 0 140 140"
-              >
-                <defs>
-                  <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stopColor="#BAFD00"></stop>
-                    <stop offset="1" stopColor="#A8E900"></stop>
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M70 18 L108 34 V70c0 25-18 42-38 52C50 112 32 95 32 70V34Z"
-                  fill="none"
-                  stroke="url(#g1)"
-                  strokeWidth="6"
-                  strokeLinejoin="round"
-                />
-                <circle
-                  cx="70"
-                  cy="66"
-                  r="18"
-                  fill="none"
-                  stroke="#A8E900"
-                  strokeWidth="4"
-                  opacity="0.35"
-                >
-                  <animate
-                    attributeName="r"
-                    values="14;22;14"
-                    dur="1.6s"
-                    repeatCount="indefinite"
-                  />
-                  <animate
-                    attributeName="opacity"
-                    values="0.45;0.1;0.45"
-                    dur="1.6s"
-                    repeatCount="indefinite"
-                  />
-                </circle>
-                <path
-                  d="M58 66 l8 8 18-20"
-                  fill="none"
-                  stroke="#A8E900"
-                  strokeWidth="6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <animate
-                    attributeName="strokeDasharray"
-                    values="0,80;80,0;0,80"
-                    dur="1.6s"
-                    repeatCount="indefinite"
-                  />
-                </path>
-              </svg>
-            </div>
-          </div>
-          <div className="description text-white mt-auto text-start">
-            <h1 className="text-3xl font-bold">Risk Control</h1>
-            <p className="text-sm text-gray-500 mt-2">
+        <Card big>
+          <button
+            onClick={() =>
+              setModalData({
+                title: "Risk Control",
+                description:
+                  "Built-in protection with free margin checks, spread filtering, volatility pause, equity limits, daily profit caps, and drawdown safeguards designed specifically for Gold trading.",
+              })
+            }
+            href=""
+          >
+            <div className="flex justify-center mb-8">{RiskIcon}</div>
+            <h3 className="text-2xl font-bold text-white text-center mb-3">
+              Risk Control
+            </h3>
+
+            <p className="text-gray-400 text-center line-clamp-3">
               Built-in protection with free margin checks, spread filtering, and
               volatility pause. Optional equity limits and daily profit caps.
             </p>
-          </div>
-        </div>
+          </button>
+        </Card>
 
-        {/* Pip Engine and Take Profit group */}
-        <div className="text-white">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            {/* Pip Engine */}
-            <div className="card flex flex-col p-4 rounded-3xl border border-lime-100 card cursor-pointer transition-all hover:border-[hsl(59,100%,50%)]  duration-300 hover:-translate-y-1">
-              <div className="flex justify-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="140"
-                  height="140"
-                  viewBox="0 0 140 140"
-                >
-                  <g transform="translate(70 70)">
-                    <g>
-                      <circle
-                        r="28"
-                        fill="none"
-                        stroke="#BAFD00"
-                        strokeWidth="6"
-                      ></circle>
-                      <circle
-                        r="10"
-                        fill="none"
-                        stroke="#A8E900"
-                        strokeWidth="6"
-                      ></circle>
-                      <g fill="#BAFD00">
-                        <rect
-                          x="-3"
-                          y="-44"
-                          width="6"
-                          height="12"
-                          rx="2"
-                        ></rect>
-                        <rect x="-3" y="32" width="6" height="12" rx="2"></rect>
-                        <rect
-                          x="-44"
-                          y="-3"
-                          width="12"
-                          height="6"
-                          rx="2"
-                        ></rect>
-                        <rect x="32" y="-3" width="12" height="6" rx="2"></rect>
-                      </g>
-                      <animateTransform
-                        attributeName="transform"
-                        type="rotate"
-                        from="0"
-                        to="360"
-                        dur="2.2s"
-                        repeatCount="indefinite"
-                      ></animateTransform>
-                    </g>
-                  </g>
-                  <path
-                    d="M18 110 H122"
-                    fill="none"
-                    stroke="#94a3b8"
-                    strokeWidth="6"
-                    strokeLinecap="round"
-                  ></path>
-                </svg>
-              </div>
-              <div className="description mt-auto text-start">
-                <h1 className="text-xl font-bold text-white">Pip Engine</h1>
-                <p className="text-sm opacity-80 mt-2 text-gray-500">
-                  Dynamically adjusts trade spacing using ATR and Bollinger
-                  Bands.
-                </p>
-              </div>
-            </div>
-
-            {/* Take Profit */}
-            <div className="card flex flex-col p-4 rounded-3xl border border-lime-100 card cursor-pointer transition-all hover:border-[hsl(59,100%,50%)]  duration-300 hover:-translate-y-1">
-              <div className="flex justify-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="140"
-                  height="140"
-                  viewBox="0 0 140 140"
-                >
-                  <circle
-                    cx="70"
-                    cy="70"
-                    r="42"
-                    fill="none"
-                    stroke="#94a3b8"
-                    strokeWidth="6"
-                  />
-                  <circle
-                    cx="70"
-                    cy="70"
-                    r="26"
-                    fill="none"
-                    stroke="#94a3b8"
-                    strokeWidth="6"
-                  />
-                  <circle cx="70" cy="70" r="10" fill="#A8E900" opacity="0.9">
-                    <animate
-                      attributeName="r"
-                      values="8;12;8"
-                      dur="1.2s"
-                      repeatCount="indefinite"
-                    />
-                  </circle>
-                </svg>
-              </div>
-              <div className="description mt-auto text-start">
-                <h1 className="text-xl font-bold text-white">Take Profit</h1>
-                <p className="text-sm opacity-80 mt-2 text-gray-500">
-                  Smart basket exits with ATR smoothing for optimal timing.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="card flex flex-col md:flex-row items-center gap-5 p-4 border border-lime-100 rounded-3xl hover:border-[hsl(59,100%,50%)]  duration-300 hover:-translate-y-1">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="140"
-              height="140"
-              viewBox="0 0 140 140"
-              className="shrink-0"
-            >
+        {/* Smart Pip */}
+        <Card big>
+          <button
+            onClick={() =>
+              setModalData({
+                title: " Pip Engine",
+                description:
+                  " Dynamically adjusts trade spacing using ATR and Bollinger Bands.",
+              })
+            }
+          >
+            <div className="flex justify-center mb-8">
+              {/* SVG */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="140"
                 height="140"
                 viewBox="0 0 140 140"
               >
-                <g
+                <g transform="translate(70 70)">
+                  <g>
+                    <circle
+                      r="28"
+                      fill="none"
+                      stroke="#BAFD00"
+                      stroke-width="6"
+                    ></circle>
+                    <circle
+                      r="10"
+                      fill="none"
+                      stroke="#A8E900"
+                      stroke-width="6"
+                    ></circle>
+                    <g fill="#BAFD00">
+                      <rect x="-3" y="-44" width="6" height="12" rx="2"></rect>
+                      <rect x="-3" y="32" width="6" height="12" rx="2"></rect>
+                      <rect x="-44" y="-3" width="12" height="6" rx="2"></rect>
+                      <rect x="32" y="-3" width="12" height="6" rx="2"></rect>
+                    </g>
+                    <animateTransform
+                      attributeName="transform"
+                      type="rotate"
+                      from="0"
+                      to="360"
+                      dur="2.2s"
+                      repeatCount="indefinite"
+                    ></animateTransform>
+                  </g>
+                </g>
+                <path
+                  d="M18 110 H122"
                   fill="none"
-                  stroke="#64748b"
+                  stroke="#94a3b8"
                   stroke-width="6"
-                  stroke-linejoin="round"
-                >
-                  <rect x="34" y="86" width="72" height="18" rx="9"></rect>
-                  <rect x="38" y="64" width="64" height="18" rx="9"></rect>
-                  <rect x="42" y="42" width="56" height="18" rx="9"></rect>
-                </g>
-                <g opacity="0.55">
-                  <rect
-                    x="34"
-                    y="86"
-                    width="72"
-                    height="18"
-                    rx="9"
-                    fill="none"
-                    stroke="#BAFD00"
-                    stroke-width="6"
-                  ></rect>
-                  <rect
-                    x="38"
-                    y="64"
-                    width="64"
-                    height="18"
-                    rx="9"
-                    fill="none"
-                    stroke="#BAFD00"
-                    stroke-width="6"
-                  ></rect>
-                  <rect
-                    x="42"
-                    y="42"
-                    width="56"
-                    height="18"
-                    rx="9"
-                    fill="none"
-                    stroke="#A8E900"
-                    stroke-width="6"
-                  ></rect>
-                  <animateTransform
-                    attributeName="transform"
-                    type="translate"
-                    values="0 18; 0 -10; 0 18"
-                    dur="1.6s"
-                    repeatCount="indefinite"
-                  ></animateTransform>
-                  <animate
-                    attributeName="opacity"
-                    values="0.15;0.65;0.15"
-                    dur="1.6s"
-                    repeatCount="indefinite"
-                  ></animate>
-                </g>
-                <text
-                  x="92"
-                  y="34"
-                  font-family="system-ui,Segoe UI,Roboto,Arial"
-                  font-size="20"
-                  fill="#BAFD00"
-                  font-weight="700"
-                >
-                  2x
-                  <animate
-                    attributeName="opacity"
-                    values="0.3;1;0.3"
-                    dur="1.6s"
-                    repeatCount="indefinite"
-                  ></animate>
-                </text>
+                  stroke-linecap="round"
+                ></path>
               </svg>
-            </svg>
-
-            <div>
-              <h1 className="text-xl font-bold text-white">Martingale</h1>
-              <p className="text-sm text-gray-500 mt-2">
-                Intelligent recovery for Gold volatility. Strategic position
-                sizing manages drawdowns — not random averaging.
-              </p>
             </div>
-          </div>
-        </div>
+            <h3 className="text-2xl font-bold text-white text-center mb-3">
+              Pip Engine
+            </h3>
+            <p className="text-gray-400 line-clamp-4 text-center">
+              Dynamically adjusts trade spacing using ATR and Bollinger Bands.
+            </p>
+          </button>
+        </Card>
+
+        {/* Basket TP */}
+        <Card big>
+          <button
+            onClick={() =>
+              setModalData({
+                title: "Take Profit",
+                description:
+                  " Smart basket exits with ATR smoothing for optimal timing.",
+              })
+            }
+          >
+            <div className="flex justify-center mb-8">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="140"
+                height="140"
+                viewBox="0 0 140 140"
+              >
+                <circle
+                  cx="70"
+                  cy="70"
+                  r="42"
+                  fill="none"
+                  stroke="#94a3b8"
+                  stroke-width="6"
+                ></circle>
+                <circle
+                  cx="70"
+                  cy="70"
+                  r="26"
+                  fill="none"
+                  stroke="#94a3b8"
+                  stroke-width="6"
+                ></circle>
+                <circle cx="70" cy="70" r="10" fill="#A8E900" opacity="0.9">
+                  <animate
+                    attributeName="r"
+                    values="8;12;8"
+                    dur="1.2s"
+                    repeatCount="indefinite"
+                  ></animate>
+                </circle>
+              </svg>
+            </div>
+            <h3 className="text-2xl font-bold text-white text-center mb-3">
+              Take Profit
+            </h3>
+            <p className="text-gray-400 text-center">
+              Smart basket exits with ATR smoothing for optimal timing.
+            </p>
+          </button>
+        </Card>
+
+        {/* Martingale */}
+        <Card big>
+          <button
+            onClick={() =>
+              setModalData({
+                title: "Martingale",
+                description:
+                  " Adaptive lot scaling with safety layers.Intelligent recovery for Gold volatility. Strategic position sizing manages drawdowns not random averaging.",
+              })
+            }
+          >
+            <div className="flex justify-center mb-8">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="140"
+                height="140"
+                viewBox="0 0 140 140"
+                class="shrink-0"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="140"
+                  height="140"
+                  viewBox="0 0 140 140"
+                >
+                  <g
+                    fill="none"
+                    stroke="#64748b"
+                    stroke-width="6"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="34" y="86" width="72" height="18" rx="9"></rect>
+                    <rect x="38" y="64" width="64" height="18" rx="9"></rect>
+                    <rect x="42" y="42" width="56" height="18" rx="9"></rect>
+                  </g>
+                  <g opacity="0.55">
+                    <rect
+                      x="34"
+                      y="86"
+                      width="72"
+                      height="18"
+                      rx="9"
+                      fill="none"
+                      stroke="#BAFD00"
+                      stroke-width="6"
+                    ></rect>
+                    <rect
+                      x="38"
+                      y="64"
+                      width="64"
+                      height="18"
+                      rx="9"
+                      fill="none"
+                      stroke="#BAFD00"
+                      stroke-width="6"
+                    ></rect>
+                    <rect
+                      x="42"
+                      y="42"
+                      width="56"
+                      height="18"
+                      rx="9"
+                      fill="none"
+                      stroke="#A8E900"
+                      stroke-width="6"
+                    ></rect>
+                    <animateTransform
+                      attributeName="transform"
+                      type="translate"
+                      values="0 18; 0 -10; 0 18"
+                      dur="1.6s"
+                      repeatCount="indefinite"
+                    ></animateTransform>
+                    <animate
+                      attributeName="opacity"
+                      values="0.15;0.65;0.15"
+                      dur="1.6s"
+                      repeatCount="indefinite"
+                    ></animate>
+                  </g>
+                  <text
+                    x="92"
+                    y="34"
+                    font-family="system-ui,Segoe UI,Roboto,Arial"
+                    font-size="20"
+                    fill="#BAFD00"
+                    font-weight="700"
+                  >
+                    2x
+                    <animate
+                      attributeName="opacity"
+                      values="0.3;1;0.3"
+                      dur="1.6s"
+                      repeatCount="indefinite"
+                    ></animate>
+                  </text>
+                </svg>
+              </svg>
+            </div>
+            <h3 className="text-2xl font-bold text-white text-center mb-3">
+              Martingale
+            </h3>
+            <p className="text-gray-400 text-center line-clamp-3">
+              Adaptive lot scaling with safety layers.Intelligent recovery for
+              Gold volatility. Strategic position sizing manages drawdowns — not
+              random averaging.
+            </p>
+          </button>
+        </Card>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-col-4 lg:grid-cols-4 gap-6 mt-5">
-        {/* Card 1 */}
-        <div className="card cursor-pointer transition-all hover:border-[hsl(59,100%,50%)]  duration-300 hover:-translate-y-1 flex flex-col p-4 border-[0.5px] border-lime-200 rounded-3xl">
-          {/* ICON — CENTERED */}
-          <div className="flex justify-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="140"
-              height="140"
-              viewBox="0 0 140 140"
-              className="shrink-0"
-            >
-              <rect
-                x="20"
-                y="28"
-                width="100"
-                height="70"
-                rx="10"
-                fill="none"
-                stroke="#64748b"
-                strokeWidth="6"
-              />
-              <path
-                d="M55 112h30"
-                fill="none"
-                stroke="#64748b"
-                strokeWidth="6"
-                strokeLinecap="round"
-              />
-              <path
-                d="M70 98v14"
-                fill="none"
-                stroke="#64748b"
-                strokeWidth="6"
-                strokeLinecap="round"
-              />
-              <path
-                d="M28 72 C38 72, 38 52, 48 52 C58 52, 58 84, 68 84 C78 84, 78 60, 88 60 C98 60, 98 78, 108 78 C116 78, 116 72, 124 72"
-                fill="none"
-                stroke="#BAFD00"
-                strokeWidth="6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeDasharray="260"
-                strokeDashoffset="260"
-              >
-                <animate
-                  attributeName="strokeDashoffset"
-                  values="260;0;0;260"
-                  dur="1.4s"
-                  repeatCount="indefinite"
-                />
-              </path>
-              <circle cx="112" cy="40" r="6" fill="#A8E900">
-                <animate
-                  attributeName="opacity"
-                  values="1;0.15;1"
-                  dur="0.8s"
-                  repeatCount="indefinite"
-                />
-              </circle>
-            </svg>
-          </div>
+      {/* ================= SECONDARY FEATURES ================= */}
+      <motion.div
+        variants={container}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+      >
+        {/* Realtime */}
+        <Card>
+          <div className="flex justify-center mb-4">{RealtimeIcon}</div>
+          <h4 className="text-lg font-semibold text-white">Realtime</h4>
+          <p className="text-sm text-gray-500 mt-2">
+            Live execution and position control on every tick.
+          </p>
+        </Card>
 
-          {/* TEXT — BOTTOM */}
-          <div className="mt-auto text-start">
-            <h1 className="text-white text-xl font-bold">Realtime</h1>
-            <p className="text-sm text-gray-500 mt-2">
-              Live execution and position control on every tick.
-            </p>
-          </div>
-        </div>
+        {/* High Frequency */}
+        <Card className="p-6 bg-slate-900/70 border border-slate-800 rounded-2xl">
+          {/* ICON */}
+          <div className="flex justify-center mb-5">{FrequencyIcon}</div>
 
-        {/* Card 2 */}
-        <div className="card cursor-pointer transition-all hover:border-[hsl(59,100%,50%)]  duration-300 hover:-translate-y-1 flex flex-col p-4 border-[0.5px] border-lime-200 rounded-3xl">
-          <div className="flex justify-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="140"
-              height="140"
-              viewBox="0 0 140 140"
-            >
-              <circle
-                cx="70"
-                cy="70"
-                r="50"
-                fill="none"
-                stroke="#64748b"
-                strokeWidth="4"
-                opacity="0.3"
-              />
-              <circle
-                cx="70"
-                cy="70"
-                r="35"
-                fill="none"
-                stroke="#64748b"
-                strokeWidth="4"
-                opacity="0.5"
-              />
-              <circle
-                cx="70"
-                cy="70"
-                r="20"
-                fill="none"
-                stroke="#64748b"
-                strokeWidth="4"
-                opacity="0.7"
-              />
-              <g>
-                <path
-                  d="M70 20 L70 40"
-                  stroke="#BAFD00"
-                  strokeWidth="6"
-                  strokeLinecap="round"
-                >
-                  <animate
-                    attributeName="opacity"
-                    values="0.3;1;0.3"
-                    dur="0.4s"
-                    repeatCount="indefinite"
-                  />
-                </path>
-                <path
-                  d="M70 100 L70 120"
-                  stroke="#BAFD00"
-                  strokeWidth="6"
-                  strokeLinecap="round"
-                >
-                  <animate
-                    attributeName="opacity"
-                    values="1;0.3;1"
-                    dur="0.4s"
-                    repeatCount="indefinite"
-                  />
-                </path>
-                <path
-                  d="M20 70 L40 70"
-                  stroke="#A8E900"
-                  strokeWidth="6"
-                  strokeLinecap="round"
-                >
-                  <animate
-                    attributeName="opacity"
-                    values="0.5;1;0.5"
-                    dur="0.4s"
-                    repeatCount="indefinite"
-                    begin="0.1s"
-                  />
-                </path>
-                <path
-                  d="M100 70 L120 70"
-                  stroke="#A8E900"
-                  strokeWidth="6"
-                  strokeLinecap="round"
-                >
-                  <animate
-                    attributeName="opacity"
-                    values="1;0.5;1"
-                    dur="0.4s"
-                    repeatCount="indefinite"
-                    begin="0.1s"
-                  />
-                </path>
-              </g>
-              <circle cx="70" cy="70" r="8" fill="#BAFD00">
-                <animate
-                  attributeName="r"
-                  values="6;10;6"
-                  dur="0.8s"
-                  repeatCount="indefinite"
-                />
-              </circle>
-              <text
-                x="70"
-                y="75"
-                fontFamily="monospace"
-                fontSize="10"
-                fill="#070C0F"
-                textAnchor="middle"
-                fontWeight="700"
-              >
-                M1
-              </text>
-            </svg>
-          </div>
+          {/* TEXT */}
+          <h4 className="text-lg font-semibold text-white text-center">
+            High Frequency
+          </h4>
 
-          <div className="mt-4 text-start">
-            <h1 className="text-white text-xl font-semibold">High Frequency</h1>
-            <p className="text-gray-500 text-sm mt-1">
-              M1 timeframe optimized for fast-moving Gold sessions.
-            </p>
-          </div>
-        </div>
+          <p className="text-sm text-gray-400 mt-2 text-center leading-relaxed">
+            M1 timeframe optimized for fast-moving Gold sessions.
+          </p>
+        </Card>
 
-        {/* Card 3 */}
-        <div className="card cursor-pointer transition-all hover:border-[hsl(59,100%,50%)]  duration-300 hover:-translate-y-1 flex flex-col p-4 border-[0.5px] border-lime-200 rounded-3xl">
-          <div className="flex justify-center">
-            <svg
-              width="140"
-              height="140"
-              viewBox="0 0 140 140"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <linearGradient id="hedgeGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#BAFD00"></stop>
-                  <stop offset="100%" stopColor="#A8E900"></stop>
-                </linearGradient>
-                <style>
-                  {`
-            .orbit { stroke-dasharray: 120 80; animation: orbit 2.6s linear infinite; }
-            .orbit.reverse { animation-direction: reverse; }
-            .core { animation: corePulse 1.8s ease-in-out infinite; }
-            @keyframes orbit { to { stroke-dashoffset: -200; } }
-            @keyframes corePulse { 0%,100% { r: 7; opacity: .6; } 50% { r: 11; opacity: 1; } }
-          `}
-                </style>
-              </defs>
-              <circle
-                cx="70"
-                cy="70"
-                r="42"
-                fill="none"
-                stroke="#64748b"
-                strokeWidth="3"
-                opacity="0.25"
-              ></circle>
-              <path
-                d="M70 28 A42 42 0 0 1 112 70"
-                fill="none"
-                stroke="url(#hedgeGrad)"
-                strokeWidth="6"
-                strokeLinecap="round"
-                className="orbit"
-              ></path>
-              <path
-                d="M28 70 A42 42 0 0 1 70 112"
-                fill="none"
-                stroke="#A8E900"
-                strokeWidth="6"
-                strokeLinecap="round"
-                className="orbit reverse"
-                opacity="0.9"
-              ></path>
-              <circle
-                cx="70"
-                cy="70"
-                r="9"
-                fill="#BAFD00"
-                className="core"
-              ></circle>
-            </svg>
-          </div>
+        {/* Dual Hedged */}
+        <Card className="p-6 bg-slate-900/70 border border-slate-800 rounded-2xl">
+          {/* ICON */}
+          <div className="flex justify-center mb-5">{HedgedIcon}</div>
 
-          <div className="mt-4 text-start">
-            <h1 className="text-white text-xl font-bold">Dual-Hedged Engine</h1>
-            <p className="text-gray-500 text-sm mt-1">
-              Opens both buy and sell positions on every M1 candle for
-              direction-neutral trading.
-            </p>
-          </div>
-        </div>
+          {/* TEXT */}
+          <h4 className="text-lg font-semibold text-white text-center">
+            Dual-Hedged Engine
+          </h4>
 
-        {/* Card 4 */}
-        <div className="card cursor-pointer transition-all hover:border-[hsl(59,100%,50%)]  duration-300 hover:-translate-y-2 flex flex-col p-4 border-[0.5px] border-lime-200 rounded-3xl">
-          <div className="flex justify-center">
+          <p className="text-sm text-gray-400 mt-2 text-center leading-relaxed">
+            Buy &amp; sell positions every M1 candle.Opens both buy and sell
+            positions on every M1 candle for direction-neutral trading.
+          </p>
+        </Card>
+
+        {/* Configurable Risk */}
+        <Card className="p-6 bg-slate-900/70 border border-slate-800 rounded-2xl">
+          {/* ICON */}
+          <div className="flex justify-center mb-5">
             <svg
               width="140"
               height="140"
@@ -628,20 +677,40 @@ const Feature = () => {
             >
               <defs>
                 <linearGradient id="riskGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="#BAFD00"></stop>
-                  <stop offset="100%" stopColor="#A8E900"></stop>
+                  <stop offset="0%" stopColor="#BAFD00" />
+                  <stop offset="100%" stopColor="#A8E900" />
                 </linearGradient>
+
                 <style>
                   {`
-            .fillArc { stroke-dasharray: 160; animation: riskFill 3s ease-in-out infinite; }
-            .needle { transform-origin: 70px 84px; animation: needleMove 3s ease-in-out infinite; }
-            .capital { animation: capPulse 1.6s ease-in-out infinite; }
-            @keyframes riskFill { 0% { stroke-dashoffset: 140; } 50% { stroke-dashoffset: 30; } 100% { stroke-dashoffset: 140; } }
-            @keyframes needleMove { 0%,100% { transform: rotate(-55deg); } 50% { transform: rotate(30deg); } }
-            @keyframes capPulse { 0%,100% { opacity: .6; } 50% { opacity: 1; } }
+            .fillArc {
+              stroke-dasharray: 160;
+              animation: riskFill 3s ease-in-out infinite;
+            }
+            .needle {
+              transform-origin: 70px 84px;
+              animation: needleMove 3s ease-in-out infinite;
+            }
+            .capital {
+              animation: capPulse 1.6s ease-in-out infinite;
+            }
+            @keyframes riskFill {
+              0% { stroke-dashoffset: 140; }
+              50% { stroke-dashoffset: 30; }
+              100% { stroke-dashoffset: 140; }
+            }
+            @keyframes needleMove {
+              0%,100% { transform: rotate(-55deg); }
+              50% { transform: rotate(30deg); }
+            }
+            @keyframes capPulse {
+              0%,100% { opacity: .6; }
+              50% { opacity: 1; }
+            }
           `}
                 </style>
               </defs>
+
               <path
                 d="M30 90 A40 40 0 0 1 110 90"
                 fill="none"
@@ -649,7 +718,8 @@ const Feature = () => {
                 strokeWidth="6"
                 strokeLinecap="round"
                 opacity="0.25"
-              ></path>
+              />
+
               <path
                 d="M30 90 A40 40 0 0 1 110 90"
                 fill="none"
@@ -657,7 +727,8 @@ const Feature = () => {
                 strokeWidth="6"
                 strokeLinecap="round"
                 className="fillArc"
-              ></path>
+              />
+
               <circle
                 cx="70"
                 cy="90"
@@ -665,7 +736,8 @@ const Feature = () => {
                 fill="#0b0f14"
                 stroke="#BAFD00"
                 strokeWidth="3"
-              ></circle>
+              />
+
               <line
                 x1="70"
                 y1="90"
@@ -675,20 +747,28 @@ const Feature = () => {
                 strokeWidth="4"
                 strokeLinecap="round"
                 className="needle"
-              ></line>
+              />
             </svg>
           </div>
 
-          <div className="mt-4 text-start">
-            <h1 className="text-white text-xl font-bold">Configurable Risk</h1>
-            <p className="text-gray-500 text-sm mt-1">
-              Adjust risk parameters for any account size. Works from $50 / 5000
-              cents upward.
-            </p>
-          </div>
-        </div>
-      </div>
-    </motion.div>
+          {/* TEXT */}
+          <h4 className="text-lg font-semibold text-white text-center">
+            Configurable Risk
+          </h4>
+
+          <p className="text-sm text-gray-400 mt-2 text-center leading-relaxed">
+            Adjust risk parameters for any account size. Works from $50 / 5000
+            cents upward.
+          </p>
+        </Card>
+      </motion.div>
+      <FeatureModal
+        open={!!modalData}
+        title={modalData?.title}
+        description={modalData?.description}
+        onClose={() => setModalData(null)}
+      />
+    </motion.section>
   );
 };
 

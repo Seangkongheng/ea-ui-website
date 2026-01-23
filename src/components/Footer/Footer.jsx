@@ -4,8 +4,6 @@ import logo from "../../assets/images/SuperTradingEA_logo.png";
 
 const Footer = () => {
   const [showContact, setShowContact] = useState(false);
-
-  // Show "Need help?" button after 3 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowContact(true);
@@ -15,7 +13,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <div className="footer mt-16 px-3 ">
+    <div className="footer  mt-16 ">
       {/* Footer Contact - Fixed Button */}
       <div
         className={`footer-contact flex items-center gap-2 fixed bottom-4 right-4 sm:bottom-8 sm:right-10 text-blue-400 p-4 rounded-full shadow-lg transition-all duration-300 ease-in-out ${
@@ -39,9 +37,9 @@ const Footer = () => {
 
       {/* Footer Component */}
       <div className="footer-content  border-t border-b border-gray-800 text-white">
-        <div className="flex flex-wrap justify-around gap-8 py-12 px-4">
+        <div className="flex flex-wrap justify-around gap-16 py-12">
           {/* Column 1 - Logo & Description */}
-          <div className="flex flex-col gap-4 max-w-xs text-center md:text-left">
+          <div className="flex flex-col gap-4 max-w-lg text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start gap-2">
               <img src={logo} className="h-10" alt="Logo" />
               <h3 className="text-white font-medium text-lg sm:text-xl">
@@ -131,7 +129,7 @@ const Footer = () => {
 
         {/* Footer Bottom */}
         <p className="text-center py-6 sm:py-10  border-t border-b border-gray-800 text-gray-400 text-sm sm:text-base">
-          © 2025 SuperTradingEA. All rights reserved.
+          © 2026 SuperTradingEA. All rights reserved.
         </p>
       </div>
     </div>

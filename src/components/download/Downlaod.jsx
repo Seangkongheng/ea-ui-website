@@ -37,14 +37,16 @@ const Download = () => {
       viewport={{ once: true, amount: 0.2 }}
     >
       <div className="mt-16 text-white max-w-6xl mx-auto px-4">
-
         {/* Noted : Title */}
+
         <motion.h1
           variants={item}
-          className="text-center py-5 text-[#A8E900] text-3xl font-bold md:text-5xl"
+          className="py-5  bg-gradient-to-r from-[#FFD700] via-[#BAFD00] to-[#9EFF00]
+                           bg-clip-text text-transparent text-2xl sm:text-6xl font-bold text-center"
         >
           All Files Downlaod
         </motion.h1>
+
         <motion.p
           variants={item}
           className="text-center text-gray-500 mb-10 mt-5"
@@ -54,7 +56,10 @@ const Download = () => {
 
         {/* Noted : All cards */}
 
-        <motion.div variants={item}  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <motion.div
+          variants={item}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6"
+        >
           <div className="group bg-[#111] rounded-2xl overflow-hidden shadow-lg hover:shadow-[0_0_25px_rgba(168,233,0,0.4)] transition">
             <div className="relative h-40 bg-gray-800 flex items-center justify-center">
               <FaFileAlt className="text-5xl text-[#A8E900]" />
