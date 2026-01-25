@@ -34,6 +34,7 @@ import { useAuthModal } from "./context/AuthModalContext";
 import SignUpForm from "./components/Auth/SignUpForm";
 import LoginForm from "./components/Auth/LoginForm";
 import Modal from "./components/Login/Modal";
+import MarketplaceDetail from "./components/Dashboard/Marketplace/MarketplaceDetail";
 
 /* ---------- Layouts ---------- */
 
@@ -133,7 +134,9 @@ function App() {
             }
           >
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/order" element={<OrderDetail />} />
+            <Route path="/order-detail" element={<OrderDetail />} />
+            <Route path="/marketplace/:id" element={<MarketplaceDetail />} />
+
           </Route>
 
           {/* -------- FALLBACK -------- */}
