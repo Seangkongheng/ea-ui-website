@@ -17,15 +17,13 @@ const Product = () => {
       .finally(() => setLoading(false));
   }, []);
 
-   if (loading) {
+  if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <p className="text-gray-400 text-lg animate-pulse">Loading Data...</p>
       </div>
     );
   }
-
-
 
   const container = {
     hidden: { opacity: 0 },
@@ -94,8 +92,20 @@ const Product = () => {
               <p className="text-gray-500 line-clamp-2 mb-5">
                 {item.description ?? "Unknow Title"}
               </p>
-              <p className="text-3xl text-[#BAFD00] font-bold">$200.00</p>
-              <p className="text-sm text-gray-300 mb-5">Monothly</p>
+
+              {item.subscription_plans?.[0] && (
+                <>
+                  <p className="text-3xl text-[#BAFD00] font-bold">
+                    ${item.subscription_plans[0].price}
+                  </p>
+                  <p className="text-sm text-gray-300 mb-5 capitalize">
+                    {item.subscription_plans[0].plan?.name}
+                  </p>
+                </>
+              )}
+
+              {/* <p className="text-3xl text-[#BAFD00] font-bold">$200.00</p>
+              <p className="text-sm text-gray-300 mb-5">Monothly</p> */}
 
               <div class="border-t pt-3">
                 <div className="info-card line-clamp-6 text-gray-500 [&_ul]:list-disc [&_ul]:pl-6 [&_li]:mb-2">
