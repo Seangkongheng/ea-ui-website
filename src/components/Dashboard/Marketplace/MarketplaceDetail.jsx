@@ -4,28 +4,81 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function MarketplaceDetail() {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { uuid } = useParams();
   const [marketplace, setMarketplace] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedPlan, setSelectedPlan] = useState(null);
-
+  const [bank_account_name, setbank_account_name] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState({});
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}marketplace/${id}`)
+      .get(`${import.meta.env.VITE_API_URL}marketplace/${uuid}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) => {
         setMarketplace(res.data.marketplace);
       })
+
       .catch((err) => {
         console.error(err);
       })
       .finally(() => {
         setLoading(false);
       });
-  }, [id]);
+  }, [uuid]);
 
   if (loading) return <p className="text-center text-gray-400">Loading...</p>;
   if (!marketplace)
     return <p className="text-center text-gray-400">Marketplace not found</p>;
+
+  // Order Submit
+  const handleSubmitOrder = async () => {
+    if (!selectedPlan) {
+      setErrors({ plan: "Please select a plan" });
+      return;
+    }
+
+    if (!bank_account_name) {
+      setErrors({ bank_account_name: "Please enter bank account name" });
+      return;
+    }
+    setIsSubmitting(true);
+    setErrors({});
+
+    try {
+      const res = await axios.post(
+        import.meta.env.VITE_API_URL + "order",
+        {
+          marketplace_id: marketplace.id,
+          marketplace_plan_id: selectedPlan.id,
+          bank_account_name: bank_account_name,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        },
+      );
+
+      navigate(`/order-detail/${res.data.uuid}`);
+
+      console.log("Order submitted", res.data);
+    } catch (err) {
+      // If backend sends validation errors
+      if (err.response?.data?.errors) {
+        setErrors(err.response.data.errors);
+      } else {
+        setErrors({
+          general: err.response?.data?.error || "Something went wrong!",
+        });
+      }
+    } finally {
+      setIsSubmitting(false); // Stop loading
+    }
+  };
 
   return (
     <div className="order-detail mt-5 px-5 max-w-6xl mx-auto">
@@ -64,12 +117,16 @@ function MarketplaceDetail() {
             <p className="text-gray-500 mb-4">{marketplace.description}</p>
             <div className="feature">
               <p className="mb-4 mb font-bold">Feature</p>
-              <ul class="space-y-1 text-sm text-gray-500 text-muted-foreground">
-                <li class="flex items-start">
-                  <span class="mr-2">•</span>
-                  <span>{marketplace.feature}</span>
-                </li>
-              </ul>
+              <div className="space-y-1 text-sm text-gray-500 text-muted-foreground">
+                {marketplace.feature ? (
+                  <div
+                    className="info-card [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-2"
+                    dangerouslySetInnerHTML={{ __html: marketplace.feature }}
+                  />
+                ) : (
+                  <p>Unknown Feature</p>
+                )}
+              </div>
             </div>
           </div>
           {/* Noted : Order Information */}
@@ -143,6 +200,10 @@ function MarketplaceDetail() {
                 );
               })}
             </div>
+            {errors.plan && (
+              <p className="text-red-500 text-xs mt-1">{errors.plan}</p>
+            )}
+
             <p className="text-sm mt-3 text-gray-400">
               Final pricing is shown on the payment provider page.
             </p>
@@ -160,14 +221,28 @@ function MarketplaceDetail() {
               Bank Acount Name{" "}
               <span className="text-red-600  font-bold"> *</span>
             </h3>
+
+            {/* Noted : Bank Account */}
             <input
               type="text"
-              className="w-full p-2 rounded-lg bg-neutral-900 focus:ring-2 border focus:ring-amber-100 "
+              className="w-full p-2 rounded-lg bg-neutral-900 focus:ring-2 border focus:ring-amber-100"
               placeholder="Enter the bank account holder name (e.g. JOHN DOE)"
+              value={bank_account_name}
+              onChange={(e) => setbank_account_name(e.target.value)}
             />
-            <button onClick={()=>navigate('/order-detail')} className="mt-4 w-full mb-5 rounded-md  px-4 py-2 text-sm bg-[#A8E900]  text-black/70 font-bold text-primary-foreground  focus:outline-none focus:ring-2  text-black  transition  hover:brightness-110  focus:ring-primary focus:ring-offset-2">
-              Summit Order
+            {errors.general && (
+              <p className="text-red-500 text-sm mb-2">{errors.general}</p>
+            )}
+
+            {/* Noted : Order Submit */}
+            <button
+              onClick={handleSubmitOrder}
+              disabled={isSubmitting}
+              className="mt-4 w-full mb-5 rounded-md  px-4 py-2 text-sm bg-[#A8E900]  text-black/70 font-bold text-primary-foreground  focus:outline-none focus:ring-2  text-black  transition  hover:brightness-110  focus:ring-primary focus:ring-offset-2"
+            >
+              {isSubmitting ? "Processing..." : "Submit Order"}
             </button>
+
             <p className="text-center text-sm text-gray-400">
               By submitting, you agree to our terms and conditions
             </p>

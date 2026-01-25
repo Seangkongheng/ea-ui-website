@@ -15,10 +15,10 @@ Need update in EA Website
 	- Membership
 	- Maketplace
 	- Everything in home page must page sigin before click
-	- Redesign page for Verify mail                                  =
-	- Change some color on dashboard                                 =Not yet
-	- Change icon user in dashboard                                   = Not yet
-	- Display file download form Panel                                 = Not yet
+	- Redesign page for Verify mail                                 	= Already
+	- Change some color on dashboard                                 	= Not yet
+	- Change icon user in dashboard                                   	= Not yet
+	- Display file download form Panel                                	= Not yet
 	- Remove and change color in input sign in and register             = Already
 	- Think About button feature on featur section.                     = Not yet
     - Change color text on input login and sign up                      = Already
@@ -28,7 +28,7 @@ Need update in EA Website
 	- Remove Contact                		= Alaready
 	- Crud markeplace               		= Already
 	- Crud Plan                     		= Already
-	- Add tiny text to form maketplace		= Not yet
+	- Add tiny text to form maketplace		= Already
 	- Change mail                           = Not yet
 	- Check Token again                     = Not yet
     

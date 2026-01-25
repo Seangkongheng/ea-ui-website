@@ -1,10 +1,66 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import WaitingVerifyModal from "../../modal/WaitingVerifyModal";
+import axios from "axios";
 
 const OrderDetail = () => {
   const navigate = useNavigate();
+  const { uuid } = useParams();
   const [openModalVerify, setOpenModalVerify] = useState(false);
+  const [orderDetail, setOrderDetail] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    if (!uuid) return; // make sure uuid exists
+    setLoading(true);
+
+    axios
+      .get(`${import.meta.env.VITE_API_URL}order-detail/${uuid}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        setOrderDetail(res.data["order-detail"]); // use exact API key
+      })
+      .catch((err) => {
+        console.error(err.response?.data || err.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [uuid]);
+  const handleConfirmPayment = async () => {
+    setIsSubmitting(true);
+    setErrors({}); // clear previous errors
+
+    try {
+      const res = await axios.put(
+        `${import.meta.env.VITE_API_URL}confirm-payment/${uuid}`,
+        {}, // if your API expects no body
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        },
+      );
+
+      // Show the modal after successful confirmation
+      setOpenModalVerify(true);
+    } catch (err) {
+      if (err.response?.data?.errors) {
+        setErrors(err.response.data.errors);
+      } else {
+        setErrors({
+          general: err.response?.data?.error || "Something went wrong!",
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="max-w-6xl mx-auto px-5 mt-6">
@@ -31,48 +87,22 @@ const OrderDetail = () => {
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* LEFT : Service Info */}
-          <div>
-            <h2 className="text-2xl font-bold text-white mb-2">
-              Trading Robot Pro
-            </h2>
+          {loading ? (
+            <p className="text-gray-400">Loading order...</p>
+          ) : orderDetail?.items?.length > 0 ? (
+            <>
+              <h2 className="text-2xl font-bold text-white mb-2">
+                {orderDetail.items[0].marketplace?.title ?? "Unknown Title"}
+              </h2>
 
-            <p className="text-gray-400 mb-4">
-              Advanced automated trading system with risk management and smart
-              hedge technology.
-            </p>
-
-            <div className="border border-white/10 rounded-xl p-4 mb-4">
-              <h4 className="text-sm font-semibold text-gray-300 mb-2">
-                Selected Plan
-              </h4>
-
-              <div className="flex items-center justify-between">
-                <span className="text-white font-medium">Monthly Plan</span>
-                <span className="text-[#A8E900] font-bold text-lg">$20.00</span>
-              </div>
-            </div>
-
-            <div className="border border-white/10 rounded-xl p-4">
-              <h4 className="text-sm font-semibold text-gray-300 mb-2">
-                Order Summary
-              </h4>
-
-              <div className="flex justify-between text-sm text-gray-400 mb-2">
-                <span>Subtotal</span>
-                <span>$20.00</span>
-              </div>
-
-              <div className="flex justify-between text-sm text-gray-400 mb-2">
-                <span>Fee</span>
-                <span>$0.00</span>
-              </div>
-
-              <div className="border-t border-white/10 pt-3 flex justify-between font-bold text-white">
-                <span>Total</span>
-                <span className="text-[#A8E900]">$20.00</span>
-              </div>
-            </div>
-          </div>
+              <p className="text-gray-400 mb-4">
+                {orderDetail.items[0].marketplace?.description ??
+                  "No description available."}
+              </p>
+            </>
+          ) : (
+            <p className="text-red-500">Order not found.</p>
+          )}
 
           {/* RIGHT : Payment */}
           <div className="border border-white/10 rounded-2xl p-6 flex flex-col items-center">
@@ -106,11 +136,16 @@ const OrderDetail = () => {
               </a>
             </div>
 
-            <button onClick={()=>setOpenModalVerify(true)} className="w-full rounded-lg bg-[#A8E900] text-black font-bold py-3 hover:brightness-110 transition">
-              Confirm Payment
+            <button
+              onClick={handleConfirmPayment}
+              className="w-full rounded-lg bg-[#A8E900] text-black font-bold py-3 hover:brightness-110 transition"
+            >
+              {isSubmitting ? "Confirming.." : "Confirm Payment"}
             </button>
 
-            {openModalVerify && <WaitingVerifyModal onClose={()=>setOpenModalVerify(false)} />}
+            {openModalVerify && (
+              <WaitingVerifyModal onClose={() => setOpenModalVerify(false)} />
+            )}
 
             <p className="text-xs text-gray-500 mt-4 text-center">
               Payment will be check and verify it.

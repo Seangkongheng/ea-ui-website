@@ -45,28 +45,16 @@ const Marketplace = () => {
           )}
 
           <div className="border-t pt-3">
-            <ul className="space-y-2 text-gray-500">
-              {item.feature?.split(",").map((feature, index) => (
-                <li key={index} className="flex items-start gap-2 text-sm">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-4 w-4 mt-0.5 text-[#A8E900]"
-                  >
-                    <path d="M20 6 9 17l-5-5" />
-                  </svg>
-                  <span>{feature.trim()}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="info-card line-clamp-6 text-gray-500 [&_ul]:list-disc [&_ul]:pl-6 [&_li]:mb-2">
+              {item.feature ? (
+                <div dangerouslySetInnerHTML={{ __html: item.feature }} />
+              ) : (
+                <p>Unknown Feature</p>
+              )}
+            </div>
 
             <button
-              onClick={() => navigate(`/marketplace/${item.id}`)}
+              onClick={() => navigate(`/marketplace/${item.uuid}`)}
               className="mt-4 w-full rounded-md px-4 py-2 text-sm bg-[#A8E900] font-bold hover:brightness-110 transition"
             >
               View Details & Order

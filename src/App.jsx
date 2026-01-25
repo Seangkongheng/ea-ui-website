@@ -134,8 +134,10 @@ function App() {
             }
           >
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/order-detail" element={<OrderDetail />} />
-            <Route path="/marketplace/:id" element={<MarketplaceDetail />} />
+            {/* <Route path="/order-detail/:id" element={<OrderDetail />} /> */}
+            <Route path="/order-detail/:uuid" element={<OrderDetail />} />
+
+            <Route path="/marketplace/:uuid" element={<MarketplaceDetail />} />
 
           </Route>
 
