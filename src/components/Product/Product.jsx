@@ -51,7 +51,7 @@ const Product = () => {
   };
   return (
     <motion.div
-      className="py-10"
+      className="py-10 "
       variants={container}
       initial="hidden"
       whileInView="show"
@@ -118,7 +118,7 @@ const Product = () => {
 
                 <button
                   onClick={() => navigate("/order")}
-                  class="mt-4 w-full  rounded-md  px-4 py-2 text-sm bg-[#A8E900]  text-black/70 font-bold text-primary-foreground  focus:outline-none focus:ring-2  text-black  transition  hover:brightness-110  focus:ring-primary focus:ring-offset-2"
+                  class="mt-4 w-full  rounded-md  px-4 py-2 text-sm bg-[hsl(59,100%,50%)]  text-black/70 font-bold text-primary-foreground  focus:outline-none focus:ring-2  text-black  transition  hover:brightness-110  focus:ring-primary focus:ring-offset-2"
                 >
                   View Details & Order
                 </button>

@@ -73,7 +73,7 @@ const DashboardNavbar = ({ onLogout }) => {
   };
 
   return (
-    <nav className="border-b border-[hsl(59,100%,50%)] bg-gradient-to-br from-[#070C0F] via-[#0A1219] to-[#070C0F] px-6 py-4">
+    <nav className="border-b mx-auto max-w-[1512px]  border-[hsl(59,100%,50%)] bg-gradient-to-br from-[#070C0F] via-[#0A1219] to-[#070C0F] px-6 py-4">
       <div className="flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-3">

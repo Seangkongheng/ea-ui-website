@@ -272,8 +272,8 @@ const FeaturePage = () => {
       className={`border-lime-100 border
         group relative overflow-hidden rounded-3xl border border-white/10
         hover:border-lime-400 transition-all
-        ${big ? "p-10" : "p-6"}
-        bg-gradient-to-b from-white/5 to-transparent
+        ${big ? "p-10" : "p-6"} border-lime-100 hover:border-[hsl(59,100%,50%)
+       
       `}
     >
       {children}
@@ -288,7 +288,7 @@ const FeaturePage = () => {
       whileInView="show"
       viewport={{ once: false }}
     >
-      <div className="text-center text-white max-w-6xl mx-auto px-4">
+      <div className="text-center text-white max-w-[1530px]  mx-auto px-4">
         <motion.h1
           variants={item}
           className=" bg-gradient-to-r from-[#FFD700] via-[#BAFD00] to-[#9EFF00]
@@ -306,7 +306,7 @@ const FeaturePage = () => {
           className="feature-content-card px-3 grid gap-6 grid-cols-1 md:grid-cols-2"
         >
           {/* Risk Control */}
-          <div className="p-10 rounded-3xl border bg-gradient-to-b from-white/5 to-transparent border-lime-100 hover:border-[#BAFD00] duration-300 hover:-translate-y-1 flex flex-col h-full text-white">
+          <div className="p-10 rounded-3xl border  border-lime-100 hover:border-[hsl(59,100%,50%) duration-300 hover:-translate-y-1 flex flex-col h-full text-white">
             <div className="flex justify-center items-center">
               <div className="risk p-5">
                 <svg
@@ -382,7 +382,7 @@ const FeaturePage = () => {
           <div className="text-white">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               {/* Pip Engine */}
-              <div className="card flex flex-col p-4 bg-gradient-to-b from-white/5 to-transparent rounded-3xl border border-lime-100 card cursor-pointer transition-all hover:border-[#BAFD00] duration-300 hover:-translate-y-1">
+              <div className="card flex flex-col p-4  rounded-3xl border border-lime-100 card cursor-pointer transition-all hover:border-[hsl(59,100%,50%) duration-300 hover:-translate-y-1">
                 <div className="flex justify-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -463,7 +463,7 @@ const FeaturePage = () => {
               </div>
 
               {/* Take Profit */}
-              <div className="card bg-gradient-to-b from-white/5 to-transparent flex flex-col p-4 rounded-3xl border border-lime-100 card cursor-pointer transition-all hover:border-[#BAFD00] duration-300 hover:-translate-y-1">
+              <div className="card bg-gradient-to- flex flex-col p-4 rounded-3xl border border-lime-100 card cursor-pointer transition-all hover:border-[#BAFD00] duration-300 hover:-translate-y-1">
                 <div className="flex justify-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -506,7 +506,7 @@ const FeaturePage = () => {
               </div>
             </div>
 
-            <div className="card bg-gradient-to-b from-white/5 to-transparent flex items-center gap-5 p-10 border border-lime-100 rounded-3xl hover:border-[#BAFD00] duration-300 hover:-translate-y-1">
+            <div className="card  flex items-center gap-5 p-10 border border-lime-100 rounded-3xl hover:border-[#BAFD00] duration-300 hover:-translate-y-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="140"

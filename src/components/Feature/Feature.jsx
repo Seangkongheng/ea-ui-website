@@ -23,8 +23,7 @@ const Card = ({ children, big }) => (
     className={`
       group relative overflow-hidden rounded-3xl border border-white/10
       hover:border-lime-400 transition-all
-      ${big ? "p-10" : "p-6"}
-      bg-gradient-to-b from-white/5 to-transparent
+      ${big ? "p-10" : "p-6"}  border border-lime-100 hover:border-[hsl(59,100%,50%)]
     `}
   >
     {children}
@@ -343,7 +342,7 @@ const Feature = () => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-      className="max-w-7xl mx-auto px-6 md:px-12 py-24"
+      className=" max-w-[1570px] px-4 mx-auto  md:px-12 py-24"
     >
       {/* HEADER */}
       <motion.div variants={item} className="text-center mb-20">
@@ -363,7 +362,7 @@ const Feature = () => {
       {/* ================= PRIMARY FEATURES ================= */}
       <motion.div
         variants={container}
-        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mb-24"
+        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mb-8"
       >
         {/* Risk Control */}
         <Card big>

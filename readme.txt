@@ -23,6 +23,9 @@ Need update in EA Website
 	- Think About button feature on featur section.                     = Not yet
     - Change color text on input login and sign up                      = Already
 	- Design payment page
+	- Change button color in view order
+	- Redesign again
+	-
 
 *Need update in EA Panel
 	- Remove Contact                		= Alaready

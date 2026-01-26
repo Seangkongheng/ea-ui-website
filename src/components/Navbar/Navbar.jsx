@@ -161,7 +161,7 @@ const Navbar = () => {
             : "bg-gradient-to-br from-[#070C0F] via-[#0A1219] to-[#070C0F]"
         }`}
       >
-        <div className="mx-auto max-w-[1512px] px-4">
+        <div className="mx-auto max-w-[1512px]  px-4">
           <div className="flex h-16 items-center justify-between text-white">
             {/* Logo */}
             <div className="flex items-center gap-2">
