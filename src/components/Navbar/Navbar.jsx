@@ -100,11 +100,11 @@ const Navbar = () => {
     setError({});
     setSuccess("");
 
-    if (!turnstileToken) {
-      setError({ general: "Please complete the captcha first." });
-      setLoading(false);
-      return;
-    }
+    // if (!turnstileToken) {
+    //   setError({ general: "Please complete the captcha first." });
+    //   setLoading(false);
+    //   return;
+    // }
 
     try {
       const res = await axios.post(
