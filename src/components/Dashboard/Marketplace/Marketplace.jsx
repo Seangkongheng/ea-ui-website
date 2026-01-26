@@ -55,7 +55,7 @@ const Marketplace = () => {
 
             <button
               onClick={() => navigate(`/marketplace/${item.uuid}`)}
-              className="mt-4 w-full rounded-md px-4 py-2 text-sm bg-[hsl(59,100%,50%)]  font-bold hover:brightness-110 transition"
+              className="mt-4 w-full rounded-md px-4 py-2 text-sm bg-[hsl(59,100%,50%)] text-black  font-bold hover:brightness-110 transition"
             >
               View Details & Order
             </button>

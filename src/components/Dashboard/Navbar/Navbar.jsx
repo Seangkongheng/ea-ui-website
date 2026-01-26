@@ -108,11 +108,11 @@ const DashboardNavbar = ({ onLogout }) => {
           </button>
 
           {dropdownOpen && (
-            <div className="absolute right-0 mt-2 w-64 bg-gray-800 rounded-xl shadow-2xl border border-gray-700 overflow-hidden z-50 animate-fadeIn">
+            <div className="absolute right-0 mt-2 w-64 bg-[#A8E900] rounded-xl shadow-2xl border border-gray-700 overflow-hidden z-50 animate-fadeIn">
               {/* User Info */}
               <div className="p-4 bg-gradient-to-br from-gray-800 to-gray-900 border-b border-gray-700">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-full bg-[hsl(59,100%,50%)] flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                  <div className="w-10 h-10 rounded-full bg-[#A8E900] flex items-center justify-center text-white font-bold text-lg shadow-lg">
                     {user.first_name ? user.first_name.charAt(0).toUpperCase() : "U"}
                   </div>
                   <div className="flex-1 min-w-0">
