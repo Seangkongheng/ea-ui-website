@@ -10,8 +10,10 @@ const Plan = () => {
 
   return (
     <div className="max-w-5xl mx-auto p-6">
-      <h1 className="text-center md:text-5xl bg-gradient-to-r from-[#FFD700] via-[#BAFD00] to-[#9EFF00]
-             bg-clip-text text-transparent font-bold text-3xl">
+      <h1
+        className="text-center md:text-5xl bg-gradient-to-r from-[#FFD700] via-[#BAFD00] to-[#9EFF00]
+             bg-clip-text text-transparent font-bold text-3xl"
+      >
         Choose Your License Plan
       </h1>
       <p className="text-center text-gray-500 mb-10 mt-5">
@@ -268,10 +270,10 @@ const Plan = () => {
 
         {/* Yearly Card */}
         <div
-          className={`cursor-pointer relative p-6 rounded-3xl border transition-shadow ${
+          className={`relative cursor-pointer rounded-3xl border p-6 transition-all duration-300 ${
             activeTab === "yearly"
-              ? " transition hover:brightness-110 shadow-[0_0_35px_rgba(168,233,0,0.85)] shadow-2xl text-white"
-              : " border-gray-300 hover:shadow-lg"
+              ? "border-transparent text-white hover:brightness-110 shadow-[0_0_28px_4px_hsla(59,100%,50%,0.25)]"
+              : "border-gray-300 hover:shadow-lg"
           }`}
         >
           {/* Recommended Badge */}
@@ -489,7 +491,7 @@ const Plan = () => {
             disabled={activeTab !== "yearly"}
             className={`w-full py-2 rounded-lg mt-10 font-semibold flex items-center justify-center gap-2 transition ${
               activeTab === "yearly"
-                ? "bg-[hsl(72_100%_50%)] text-white text-[hsl(72_100%_50%)] "
+                ? "bg-[hsl(72_100%_50%)] text-black "
                 : " border text-white border-[hsl(72_100%_40%)]"
             }`}
           >

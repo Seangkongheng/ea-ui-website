@@ -29,12 +29,13 @@ import Footer from "./components/Footer/Footer";
 
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
-
 import { useAuthModal } from "./context/AuthModalContext";
 import SignUpForm from "./components/Auth/SignUpForm";
 import LoginForm from "./components/Auth/LoginForm";
 import Modal from "./components/Login/Modal";
 import MarketplaceDetail from "./components/Dashboard/Marketplace/MarketplaceDetail";
+import Disclaimer from "./components/Disclaimer/Disclaimer";
+import TermsConditions from "./components/Disclaimer/TermsConditions";
 
 /* ---------- Layouts ---------- */
 
@@ -99,8 +100,22 @@ function App() {
               element={isLoggedIn ? <Navigate to="/dashboard" /> : <Product />}
             />
             <Route
+              path="/disclaimer"
+              element={
+                isLoggedIn ? <Navigate to="/dashboard" /> : <Disclaimer />
+              }
+            />
+            <Route
+              path="/terms-conditions"
+              element={
+                isLoggedIn ? <Navigate to="/dashboard" /> : <TermsConditions />
+              }
+            />
+            <Route
               path="/feature"
-              element={isLoggedIn ? <Navigate to="/dashboard" /> : <FeaturePage />}
+              element={
+                isLoggedIn ? <Navigate to="/dashboard" /> : <FeaturePage />
+              }
             />
 
             <Route
@@ -109,19 +124,27 @@ function App() {
             />
             <Route
               path="/verify-success"
-              element={isLoggedIn ? <Navigate to="/dashboard" /> : <VerifySuccess />}
+              element={
+                isLoggedIn ? <Navigate to="/dashboard" /> : <VerifySuccess />
+              }
             />
             <Route
               path="/verify-failed"
-              element={isLoggedIn ? <Navigate to="/dashboard" /> : <VerifyFailed />}
+              element={
+                isLoggedIn ? <Navigate to="/dashboard" /> : <VerifyFailed />
+              }
             />
             <Route
               path="/waiting-verify"
-              element={isLoggedIn ? <Navigate to="/dashboard" /> : <WaitingVerify />}
+              element={
+                isLoggedIn ? <Navigate to="/dashboard" /> : <WaitingVerify />
+              }
             />
             <Route
               path="/verify-login"
-              element={isLoggedIn ? <Navigate to="/dashboard" /> : <VerifyLogin />}
+              element={
+                isLoggedIn ? <Navigate to="/dashboard" /> : <VerifyLogin />
+              }
             />
           </Route>
 
@@ -138,7 +161,6 @@ function App() {
             <Route path="/order-detail/:uuid" element={<OrderDetail />} />
 
             <Route path="/marketplace/:uuid" element={<MarketplaceDetail />} />
-
           </Route>
 
           {/* -------- FALLBACK -------- */}

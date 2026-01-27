@@ -342,7 +342,7 @@ const Feature = () => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-      className=" max-w-[1570px] px-4 mx-auto  md:px-12 py-24"
+      className=" max-w-[1570px] px-4 mx-auto  md:px-12"
     >
       {/* HEADER */}
       <motion.div variants={item} className="text-center mb-20">

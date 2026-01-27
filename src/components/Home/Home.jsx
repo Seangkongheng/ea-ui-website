@@ -159,23 +159,20 @@ const Home = () => {
       variants={container}
       initial="hidden"
       animate="show"
-      className="home w-full min-h-screen flex justify-center items-center px-7 sm:px-6"
+      className="home w-full h-[750px] flex justify-center items-center px-7 sm:px-6"
     >
       <AnimatedBackground />
 
-      <div className="text-center mt-16 max-w-5xl mx-auto">
+      <div className="text-center mt-16 max-w-6xl mx-auto">
         {/* Title */}
         <motion.div variants={item} className="home-title">
-          <h1
-            className="mb-6  bg-gradient-to-r from-[#FFD700] via-[#BAFD00] to-[#9EFF00]
-                   bg-clip-text text-transparent text-3xl sm:text-6xl font-bold text-center"
-          >
+          <h1 className="mb-6 bg-gradient-to-r from-[#FFD700] via-[#BAFD00] to-[#9EFF00] bg-clip-text text-transparent text-4xl sm:text-7xl font-bold text-center">
             Engineered for Gold Volatility
           </h1>
 
-          <h2 className="text-2xl sm:text-5xl lg:text-6xl font-bold text-white mb-8 max-w-md sm:max-w-3xl mx-auto">
+          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-semibold text-white mb-8 max-w-5xl  sm:max-w-8xl mx-auto">
             Trade XAUUSD Without Choosing a Direction
-          </h2>
+          </h1>
         </motion.div>
 
         {/* Description */}
@@ -191,7 +188,8 @@ const Home = () => {
           variants={item}
           className="home-button flex flex-col sm:flex-row justify-center items-center gap-4 mt-6 w-full"
         >
-          <button  onClick={() => {
+          <button
+            onClick={() => {
               setIsModalOpen(true);
               setIsMenuOpen(false);
             }}
@@ -222,7 +220,7 @@ const Home = () => {
             href="#"
             className="flex justify-center items-center w-full sm:w-auto px-10 py-2 bg-gray-800 text-[hsl(59,100%,50%)] font-bold border-2 border-[hsl(59,100%,50%)] rounded-md transition hover:brightness-110"
           >
-            Get Started Free
+            Get Started
           </button>
         </motion.div>
 

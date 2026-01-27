@@ -28,7 +28,18 @@ Need update in EA Website
 	- On prduct on home page show detail on it like dashbaord but must be sign to check out
 	- Modal when logount
 	- modal when expire
-	- get start button go to login
+	- get start button go to login                                     =Already
+	- Desig style loading 												= Note yet
+	- Design Email send like login										 = Not Yet
+	- create new page for 												 = Already
+	- check button 														 = Not Yet
+	- change hover button in Plan                                        = Already
+	- check with footer icon											= Already
+	- download file 													= Already
+	- Home page space with featur 										= Already
+	- Remove Modal from feature											= Not yet	
+	- prepare button in product 										= Already
+
 
 *Need update in EA Panel
 	- Remove Contact                		= Alaready

@@ -296,7 +296,7 @@ const AnimatedBackground = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden opacity-70">
+    <div className="absolute inset-0 w-full h-[750px] pointer-events-none overflow-hidden opacity-70">
       <canvas ref={canvasRef} />
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { FaShoppingCart, FaCheckCircle } from "react-icons/fa";
 
 const Product = () => {
   const [marketplace, setMarketplace] = useState([]);
@@ -79,20 +80,22 @@ const Product = () => {
       <div className="max-w-6xl mx-auto px-5 grid grid-cols-1 md:grid-cols-3 gap-6 ">
         {marketplace.map((item) => (
           <div
-            className="content-card flex flex-col  cursor-pointer p-6  group relative overflow-hidden border border-white/10
-        hover:border-lime-400 transition-all
-        bg-gradient-to-b from-white/5 to-transparent rounded-3xl"
+            className="content-card flex flex-col cursor-pointer p-6 group relative overflow-hidden border border-white/10
+             hover:border-lime-400 transition-all
+             bg-gradient-to-b from-white/5 to-transparent rounded-3xl"
           >
             <div className="card-title">
               <h3 className="text-lg font-bold mb-2 text-white">
-                {item.title ?? "Unknow Title"}
+                {item.title ?? "Unknown Title"}
               </h3>
             </div>
-            <div className="card-body">
-              <p className="text-gray-500 line-clamp-2 mb-5">
-                {item.description ?? "Unknow Title"}
-              </p>
 
+            <div className="card-body flex flex-col flex-1">
+              {" "}
+              {/* <-- flex-1 makes body grow */}
+              <p className="text-gray-500 line-clamp-2 mb-5">
+                {item.description ?? "Unknown Description"}
+              </p>
               {item.subscription_plans?.[0] && (
                 <>
                   <p className="text-3xl text-[#BAFD00] font-bold">
@@ -103,24 +106,21 @@ const Product = () => {
                   </p>
                 </>
               )}
-
-              {/* <p className="text-3xl text-[#BAFD00] font-bold">$200.00</p>
-              <p className="text-sm text-gray-300 mb-5">Monothly</p> */}
-
-              <div class="border-t pt-3">
-                <div className="info-card line-clamp-6 text-gray-500 [&_ul]:list-disc [&_ul]:pl-6 [&_li]:mb-2">
+              <div className="border-t pt-3 mt-auto">
+                {" "}
+                {/* <-- mt-auto pushes it to bottom */}
+                <div className="info-card line-clamp-6 text-gray-500 [&_ul]:list-disc [&_ul]:pl-6 [&_li]:mb-2 mb-4">
                   {item.feature ? (
                     <div dangerouslySetInnerHTML={{ __html: item.feature }} />
                   ) : (
                     <p>Unknown Feature</p>
                   )}
                 </div>
-
                 <button
                   onClick={() => navigate("/order")}
-                  class="mt-4 w-full  rounded-md  px-4 py-2 text-sm bg-[hsl(59,100%,50%)]  text-black/70 font-bold text-primary-foreground  focus:outline-none focus:ring-2  text-black  transition  hover:brightness-110  focus:ring-primary focus:ring-offset-2"
+                  className="w-full flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm bg-[hsl(59,100%,50%)] text-black/70 font-bold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition hover:brightness-110"
                 >
-                  View Details & Order
+                  <FaShoppingCart /> Order
                 </button>
               </div>
             </div>
