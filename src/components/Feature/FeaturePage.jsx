@@ -282,13 +282,13 @@ const FeaturePage = () => {
 
   return (
     <motion.div
-      className="relative mt-16" // ensure some space
+      className="relative py-10" // ensure some space
       variants={container}
       initial="hidden"
       whileInView="show"
       viewport={{ once: false }}
     >
-      <div className="text-center text-white max-w-[1530px]  mx-auto px-4">
+      <div className="text-center mt-16  text-white max-w-[1530px]  mx-auto px-4">
         <motion.h1
           variants={item}
           className=" bg-gradient-to-r from-[#FFD700] via-[#BAFD00] to-[#9EFF00]

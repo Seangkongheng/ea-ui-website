@@ -39,6 +39,11 @@ Need update in EA Website
 	- Home page space with featur 										= Already
 	- Remove Modal from feature											= Not yet	
 	- prepare button in product 										= Already
+	- Create New pages 			(Recomment broker , member vip)			= Noted
+	- On product Detail when click order alert login
+	- Login in home have have problem
+	- Add Video
+	
 
 
 *Need update in EA Panel

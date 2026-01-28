@@ -53,6 +53,7 @@ const Download = () => {
 
   return (
     <motion.div
+      className="py-10"
       variants={container}
       initial="hidden"
       whileInView="show"
@@ -102,22 +103,18 @@ const Download = () => {
                     {item.title ?? "Unknown Title"}
                   </h3>
 
-                  <p className="text-sm text-gray-400 mb-4">
+                  <p className="text-sm line-clamp-2 text-gray-400 mb-4">
                     {item.description ?? "No Description"}
                   </p>
 
+                  {/* Noted : Dowlaod Button */}
                   <div className="w-full text-center">
-                    {/* <div className="flex items-center gap-2 text-gray-400 text-sm">
-                      <FaEye />
-                      <span>{item.total_downloads ?? "0"}</span>
-                    </div> */}
-
                     <div className="w-full flex flex-col gap-2 mt-2">
                       {item.file &&
                         JSON.parse(item.file).map((f, idx) => (
                           <a
                             key={idx}
-                            href={`https://panel.seangkongheng.site/${f.path}`} // public URL
+                            href={`https://panel.seangkongheng.site/${f.path}`}
                             download={f.name}
                             className="w-full flex justify-center items-center gap-2 px-4 py-2 bg-[#A8E900] text-black rounded-lg text-sm font-semibold hover:bg-[#c6ff00] transition"
                           >
@@ -127,6 +124,7 @@ const Download = () => {
                         ))}
                     </div>
                   </div>
+
                 </div>
               </div>
             );

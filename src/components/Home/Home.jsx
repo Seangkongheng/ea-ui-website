@@ -194,9 +194,19 @@ const Home = () => {
               setIsMenuOpen(false);
             }}
             href="#"
+            className="flex justify-center items-center w-full sm:w-auto px-10 py-2 bg-gray-800 text-[hsl(59,100%,50%)] font-bold border-2 border-[hsl(59,100%,50%)] rounded-md transition hover:brightness-110"
+          >
+            Get Started
+          </button>
+          <button
+            onClick={() => {
+              setIsModalOpen(true);
+              setIsMenuOpen(false);
+            }}
+            href="#"
             className="group flex justify-center items-center w-full sm:w-auto px-6 py-2 bg-[hsl(59,100%,50%)] text-black rounded-md transition hover:brightness-110 "
           >
-            BUY NOW
+            View Pricing
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -210,17 +220,6 @@ const Home = () => {
               <path d="M5 12h14" />
               <path d="m12 5 7 7-7 7" />
             </svg>
-          </button>
-
-          <button
-            onClick={() => {
-              setIsModalOpen(true);
-              setIsMenuOpen(false);
-            }}
-            href="#"
-            className="flex justify-center items-center w-full sm:w-auto px-10 py-2 bg-gray-800 text-[hsl(59,100%,50%)] font-bold border-2 border-[hsl(59,100%,50%)] rounded-md transition hover:brightness-110"
-          >
-            Get Started
           </button>
         </motion.div>
 

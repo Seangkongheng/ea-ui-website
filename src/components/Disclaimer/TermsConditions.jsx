@@ -20,14 +20,14 @@ const TermsConditions = () => {
 
   return (
     <motion.div
-      className="relative mt-16 px-4 md:px-16"
+      className="relative py-10 px-4 md:px-16"
       variants={container}
       initial="hidden"
       whileInView="show"
       viewport={{ once: false }}
     >
       {/* Header */}
-      <div className="text-center text-white max-w-5xl mx-auto">
+      <div className="text-center mt-16 text-white max-w-5xl mx-auto">
         <motion.h1
           variants={item}
           className="bg-gradient-to-r from-[#FFD700] via-[#BAFD00] to-[#9EFF00]
@@ -35,12 +35,6 @@ const TermsConditions = () => {
         >
           Terms & Conditions
         </motion.h1>
-        <motion.p
-          variants={item}
-          className="text-gray-300 mb-12 mt-5 text-lg md:text-xl"
-        >
-          Description here....
-        </motion.p>
       </div>
 
       {/* Content Sections */}

@@ -9,7 +9,7 @@ const Plan = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
+    <div className="max-w-5xl mx-auto py-10 mt-16">
       <h1
         className="text-center md:text-5xl bg-gradient-to-r from-[#FFD700] via-[#BAFD00] to-[#9EFF00]
              bg-clip-text text-transparent font-bold text-3xl"

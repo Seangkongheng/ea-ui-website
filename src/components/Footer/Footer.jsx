@@ -65,7 +65,7 @@ const Footer = () => {
 
           {/* Column 2 - Quick Links */}
           <div className="flex flex-col gap-4 max-w-xs text-center md:text-left">
-            <h3 className="font-bold text-lg sm:text-xl">Our Links</h3>
+            <h3 className="font-bold text-lg sm:text-xl">Useful links</h3>
             <ul className="flex flex-col gap-2 text-gray-500 text-sm sm:text-base">
               <li className="hover:text-white cursor-pointer"><a onClick={()=>navigate('/disclaimer')} href="">Disclaimer</a></li>
               <li className="hover:text-white cursor-pointer"><a onClick={()=>navigate('/terms-conditions')} href="">Terms & Conditions</a>
@@ -81,7 +81,7 @@ const Footer = () => {
               {/* Facebook */}
               <li className="flex items-center gap-2 hover:text-white cursor-pointer">
                 <a
-                  href="https://www.facebook.com/ChhuyVannith"
+                  href="https://www.facebook.com/SmartTradingEA"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
@@ -94,7 +94,7 @@ const Footer = () => {
               {/* Telegram */}
               <li className="flex items-center gap-2 hover:text-white cursor-pointer">
                 <a
-                  href="https://t.me/ChhuyVannithDev"
+                  href="https://t.me/SmartTradingGoldEA"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
@@ -107,7 +107,7 @@ const Footer = () => {
               {/* YouTube */}
               <li className="flex items-center gap-2 hover:text-white cursor-pointer">
                 <a
-                  href="https://www.youtube.com/"
+                  href="https://www.youtube.com/@SmartTradingGoldEA"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
@@ -120,7 +120,7 @@ const Footer = () => {
               {/* discord */}
               <li className="flex items-center gap-2 hover:text-white cursor-pointer">
                 <a
-                  href="https://discord.com/"
+                  href=" https://discord.gg/maNJgjv5"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"

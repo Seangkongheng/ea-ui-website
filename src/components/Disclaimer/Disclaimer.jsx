@@ -18,22 +18,19 @@ const Disclaimer = () => {
 
   return (
     <motion.div
-      className="relative mt-16"
+      className="relative py-10"
       variants={container}
       initial="hidden"
       whileInView="show"
       viewport={{ once: false }}
     >
-      <div className="text-center text-white max-w-[1530px] mx-auto px-4">
+      <div className="text-center mt-16  text-white max-w-[1530px] mx-auto px-4">
         <motion.h1
           variants={item}
           className="bg-gradient-to-r from-[#FFD700] via-[#BAFD00] to-[#9EFF00] bg-clip-text text-transparent py-5 text-3xl font-bold md:text-5xl"
         >
           Disclaimer
         </motion.h1>
-        <motion.p variants={item} className="text-gray-300 mb-10 mt-5">
-            Description here....
-        </motion.p>
       </div>
 
       <div className="content-text max-w-6xl  mx-auto   px-4 text-gray-300 space-y-4">
