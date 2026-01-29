@@ -21,10 +21,7 @@ const Modal = ({ isOpen, onClose, children }) => {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex justify-between items-center mb-4">
-              <h2 className=" text-2xl font-semibold text-white  dark:text-white">
-                 Sign Ins
-              </h2>
+            <div className="flex justify-end mb-4">
               <button
                 onClick={onClose}
                 className="text-gray-500 hover:text-red-500"
@@ -34,9 +31,7 @@ const Modal = ({ isOpen, onClose, children }) => {
             </div>
 
             {/* Content */}
-            <div className="text-gray-600 dark:text-gray-300">
-              {children}
-            </div>
+            <div className="text-gray-600 dark:text-gray-300">{children}</div>
           </motion.div>
         </motion.div>
       )}

@@ -12,7 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [showContact, setShowContact] = useState(false);
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -41,7 +41,7 @@ const Footer = () => {
           href="https://t.me/ChhuyVannithDev"
           className="text-white md:text-[10px] text-sm font-semibold"
         >
-          Need help?
+          Chat with us
         </a>
       </div>
 
@@ -67,9 +67,21 @@ const Footer = () => {
           <div className="flex flex-col gap-4 max-w-xs text-center md:text-left">
             <h3 className="font-bold text-lg sm:text-xl">Useful links</h3>
             <ul className="flex flex-col gap-2 text-gray-500 text-sm sm:text-base">
-              <li className="hover:text-white cursor-pointer"><a onClick={()=>navigate('/disclaimer')} href="">Disclaimer</a></li>
-              <li className="hover:text-white cursor-pointer"><a onClick={()=>navigate('/terms-conditions')} href="">Terms & Conditions</a>
-                
+              <li className="hover:text-white cursor-pointer">
+                <a onClick={() => navigate("/disclaimer")} href="">
+                  Disclaimer
+                </a>
+              </li>
+              <li className="hover:text-white cursor-pointer">
+                <a onClick={() => navigate("/terms-conditions")} href="">
+                  Terms & Conditions
+                </a>{" "}
+              </li>
+              <li className="hover:text-white cursor-pointer">
+                <a href="">Education</a>{" "}
+              </li>
+              <li className="hover:text-white cursor-pointer">
+                <a href="">Q&A</a>{" "}
               </li>
             </ul>
           </div>
@@ -135,7 +147,8 @@ const Footer = () => {
 
         {/* Footer Bottom */}
         <p className="text-center py-6 sm:py-10  border-t border-b border-gray-800 text-gray-400 text-sm sm:text-base">
-          © {new Date().getFullYear()} SuperTradingEA. All rights reserved.
+          © {new Date().getFullYear()}SmartTradingEA By V.S. All rights
+          reserved.
         </p>
       </div>
     </div>

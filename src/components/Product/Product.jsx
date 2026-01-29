@@ -73,7 +73,7 @@ const Product = () => {
           variants={item}
           className="text-center text-gray-500 mb-10 mt-5"
         >
-          Professional automation engineered for Gold volatility
+          Professional Expert Advisor built for Gold (XAUUSD)
         </motion.p>
       </div>
 
@@ -118,7 +118,7 @@ const Product = () => {
                 </div>
                 <button
                   onClick={() => navigate("/order")}
-                  className="w-full flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm bg-[hsl(59,100%,50%)] text-black/70 font-bold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition hover:brightness-110"
+                  className="w-full flex items-center justify-center font-semibold  gap-2 rounded-md px-4 py-2 text-sm bg-[hsl(59,100%,50%)] hover:bg-[#BAFD00] hover:brightness-110 transition text-black/70 font-bold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition hover:brightness-110"
                 >
                   <FaShoppingCart /> Order
                 </button>

@@ -132,7 +132,7 @@ const Plan = () => {
   };
 
   return (
-    <div id="plan" className="max-w-5xl mx-auto py-10 mt-16">
+    <div id="plan" className="max-w-5xl mx-auto py-10 px-4 mt-16">
       <h1
         className="text-center md:text-5xl bg-gradient-to-r from-[#FFD700] via-[#BAFD00] to-[#9EFF00]
              bg-clip-text text-transparent font-bold text-3xl"
@@ -152,7 +152,7 @@ const Plan = () => {
           onClick={() => handleTabClick("monthly")}
           className={`px-6 py-2 rounded-full font-semibold transition ${
             activeTab === "monthly"
-              ? "bg-lime-400 text-black" // inactive style
+              ? "bg-[hsl(59,100%,50%)] hover:bg-[#BAFD00] hover:brightness-110 transition" // inactive style
               : "text-gray-400 hover:text-white"
           }`}
         >
@@ -165,7 +165,7 @@ const Plan = () => {
             onClick={() => handleTabClick("yearly")}
             className={`px-6 py-2 rounded-full font-semibold transition ${
               activeTab === "yearly"
-                ? "bg-lime-400 text-black" // active highlight
+                ? "bg-[hsl(59,100%,50%)] hover:bg-[#BAFD00] hover:brightness-110 transition" // active highlight
                 : "text-gray-400 hover:text-white"
             }`}
           >
@@ -373,7 +373,7 @@ const Plan = () => {
             disabled={activeTab !== "monthly"}
             className={`w-full py-2 rounded-lg mt-10 font-semibold flex items-center justify-center gap-2 transition ${
               activeTab === "monthly"
-                ? "border text-[hsl(72_100%_50%)]"
+                ? "flex justify-center items-center w-full  bg-gray-800 text-[hsl(59,100%,50%)] font-bold border-2 border-[hsl(59,100%,50%)] rounded-md transition hover:brightness-110"
                 : "border text-[hsl(72_100%_50%)]"
             }`}
           >
@@ -615,17 +615,15 @@ const Plan = () => {
           <button
             // onClick={() => handleTabClick("monthly")}
 
-             onClick={() => {
+            onClick={() => {
               handleTabClick("monthly");
               setIsModalOpen(true);
             }}
-
-
             disabled={activeTab !== "yearly"}
             className={`w-full py-2 rounded-lg mt-10 font-semibold flex items-center justify-center gap-2 transition ${
               activeTab === "yearly"
                 ? "bg-[hsl(72_100%_50%)] text-black "
-                : " border text-white border-[hsl(72_100%_40%)]"
+                : " flex justify-center items-center w-full  bg-gray-800 text-[hsl(59,100%,50%)] font-bold border-2 border-[hsl(59,100%,50%)] rounded-md transition hover:brightness-110"
             }`}
           >
             Get Started
@@ -648,12 +646,16 @@ const Plan = () => {
 
       {/* Modal show Login and Sign Up */}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <h2 className="text-2xl font-semibold text-white dark:text-white mb-2">
+          {isSignUp ? "Sign Up" : "Sign In"}
+        </h2>
         <div className="modal-content w-full">
           {isSignUp ? (
             // ---------------- SIGN UP ----------------
             <form onSubmit={handleSubmit}>
               <p className="mb-4 text-sm text-gray-500">
-                Create your account by filling the form below.
+                Please register an account to purchase and join us. Fill your
+                info in the form bellow.
               </p>
 
               {/* Name Input */}
@@ -791,6 +793,11 @@ const Plan = () => {
                 >
                   Sign In
                 </span>
+              </p>
+              <p className="text-center text-primary text-sm mt-4">
+                <button onClick={() => navigate("/terms-conditions")} href="">
+                  Terms and Conditions
+                </button>
               </p>
             </form>
           ) : (

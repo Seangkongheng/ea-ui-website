@@ -334,7 +334,7 @@ const Service = () => {
                         setIsModalOpen(true);
                       }}
                       href="#"
-                      className="inline-flex items-center gap-2 px-4 py-2 text-black font-semibold rounded-lg bg-[hsl(59,100%,50%)]  hover:bg-[#BAFD00] transition group"
+                      className=" gap-2 group flex justify-center items-center w-full sm:w-auto px-4 py-2 text-black font-semibold rounded-lg bg-[hsl(59,100%,50%)] hover:bg-[#BAFD00] hover:brightness-110 transition"
                     >
                       View VPS Plans
                       <svg
@@ -351,6 +351,7 @@ const Service = () => {
                         <path d="m12 5 7 7-7 7" />
                       </svg>
                     </button>
+                    <div></div>
                     <span className="text-sm text-gray-400">
                       Starting from{" "}
                       <span className="text-[hsl(59,100%,50%)] font-bold">
@@ -429,12 +430,16 @@ const Service = () => {
 
       {/* Modal show Login and Sign Up */}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <h2 className="text-2xl font-semibold text-white dark:text-white mb-2">
+          {isSignUp ? "Sign Up" : "Sign In"}
+        </h2>
         <div className="modal-content w-full">
           {isSignUp ? (
             // ---------------- SIGN UP ----------------
             <form onSubmit={handleSubmit}>
               <p className="mb-4 text-sm text-gray-500">
-                Create your account by filling the form below.
+                Please register an account to purchase and join us. Fill your
+                info in the form bellow.
               </p>
 
               {/* Name Input */}
@@ -572,6 +577,11 @@ const Service = () => {
                 >
                   Sign In
                 </span>
+              </p>
+              <p className="text-center text-primary text-sm mt-4">
+                <button onClick={() => navigate("/terms-conditions")} href="">
+                  Terms and Conditions
+                </button>
               </p>
             </form>
           ) : (

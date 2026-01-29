@@ -45,7 +45,6 @@ const item = {
 };
 
 const VipMember = () => {
-  const { openLogin } = useAuthModal();
   const [isSignUp, setIsSignUp] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -248,22 +247,25 @@ const VipMember = () => {
                 </li>
               </ul>
 
-              <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+              <div className=" w-full sm:flex-row justify-center gap-4 mt-8">
                 <button
-                  onClick={() => {
-                    setIsModalOpen(true);
-                  }}
-                  className="px-6 py-2 rounded-xl bg-[#A8E900] text-black font-semibold hover:brightness-110 transition"
+                  onClick={() => setIsModalOpen(true)}
+                  className="gap-2 group flex justify-center items-center w-full sm:w-auto px-4 py-2 text-black font-semibold rounded-lg bg-[hsl(59,100%,50%)] hover:bg-[#BAFD00] hover:brightness-110 transition"
                 >
                   Get Started
-                </button>
-                <button
-                  onClick={() => {
-                    setIsModalOpen(true);
-                  }}
-                  className="px-6 py-2 rounded-xl border border-[#A8E900] text-[#A8E900] hover:bg-[#A8E900]/10 transition"
-                >
-                  Sign Up
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
                 </button>
               </div>
             </div>
@@ -314,12 +316,16 @@ const VipMember = () => {
 
       {/* Modal show Login and Sign Up */}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <h2 className="text-2xl font-semibold text-white dark:text-white mb-2">
+          {isSignUp ? "Sign Up" : "Sign In"}
+        </h2>
         <div className="modal-content w-full">
           {isSignUp ? (
             // ---------------- SIGN UP ----------------
             <form onSubmit={handleSubmit}>
               <p className="mb-4 text-sm text-gray-500">
-                Create your account by filling the form below.
+                Please register an account to purchase and join us. Fill your
+                info in the form bellow.
               </p>
 
               {/* Name Input */}
@@ -457,6 +463,11 @@ const VipMember = () => {
                 >
                   Sign In
                 </span>
+              </p>
+              <p className="text-center text-primary text-sm mt-4">
+                <button onClick={() => navigate("/terms-conditions")} href="">
+                  Terms and Conditions
+                </button>
               </p>
             </form>
           ) : (

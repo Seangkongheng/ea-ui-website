@@ -116,7 +116,7 @@ const Download = () => {
                             key={idx}
                             href={`https://panel.seangkongheng.site/${f.path}`}
                             download={f.name}
-                            className="w-full flex justify-center items-center gap-2 px-4 py-2 bg-[#A8E900] text-black rounded-lg text-sm font-semibold hover:bg-[#c6ff00] transition"
+                            className="w-full flex justify-center items-center gap-2 px-4 py-2  bg-[hsl(59,100%,50%)] hover:bg-[#BAFD00] hover:brightness-110  text-black rounded-lg text-sm font-semibold hover:bg-[#c6ff00] transition"
                           >
                             <FaDownload />
                             {f.name}
